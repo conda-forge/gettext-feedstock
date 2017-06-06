@@ -1,16 +1,18 @@
-{% set version = "0.19.7" %}
+{% set name = "gettext" %}
+{% set version = "0.19.8.1" %}
+{% set sha256 = "105556dbc5c3fbbc2aa0edb46d22d055748b6f5c7cd7a8d99f8e7eb84e938be4" %}
 
 package:
-  name: gettext
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: gettext-{{ version }}.tar.xz
-  url: ftp://ftp.gnu.org/pub/gnu/gettext/gettext-{{ version }}.tar.xz
-  sha256: 378fa86a091cec3acdece3c961bb8d8c0689906287809a8daa79dc0c6398d934
+  fn: {{ name }}-{{ version }}.tar.xz
+  url: ftp://ftp.gnu.org/pub/gnu/{{ name }}/{{ name }}-{{ version }}.tar.xz
+  sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win]
 
 requirements:
@@ -25,7 +27,8 @@ test:
 
 about:
   home: https://www.gnu.org/software/gettext/
-  license: GNU General Public License v3
+  license: GPLv2
+  license_file: COPYING
   summary: "Internationalization package."
 
 extra:
