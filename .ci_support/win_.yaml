@@ -1,11 +1,13 @@
-c_compiler:
-- vs2015
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
 libffi:
 - '3.2'
+libiconv:
+- '1.15'
 pin_run_as_build:
   libffi:
+    max_pin: x.x
+  libiconv:
     max_pin: x.x
