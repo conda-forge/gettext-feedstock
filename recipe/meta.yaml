@@ -32,17 +32,16 @@ build:
 
 requirements:
   build:
-    - posix                              # [win]
-    - {{posix}}autoconf                  # [win]
-    - {{posix}}automake{{ am_version }}  # [win]
-    - {{posix}}libtool
-    - {{posix}}patch                     # [win]
-    - {{native}}binutils                 # [win]
-    - {{native}}crt-git                  # [win]
-    - {{ compiler('c') }}                # [not win]
-    - {{ compiler('cxx') }}              # [not win]
-    - make                               # [unix]
-    - vs2015_win-64                      # [win] -- no VS2008 since it's just a pain to work with
+    - posix                                # [win]
+    - {{ posix }}autoconf                  # [win]
+    - {{ posix }}automake{{ am_version }}  # [win]
+    - {{ posix }}libtool
+    - {{ posix }}patch                     # [win]
+    - {{ native }}binutils                 # [win]
+    - {{ native }}crt-git                  # [win]
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make                                 # [unix]
   host:
     - libffi
     - libiconv  # [not linux]
