@@ -32,7 +32,7 @@ requirements:
     - posix                              # [win]
     - {{posix}}autoconf                  # [win]
     - {{posix}}automake{{ am_version }}  # [win]
-    - {{posix}}libtool                   # [win]
+    - {{posix}}libtool
     - {{posix}}patch                     # [win]
     - {{native}}binutils                 # [win]
     - {{native}}crt-git                  # [win]
