@@ -3,7 +3,7 @@ About gettext
 
 Home: https://www.gnu.org/software/gettext/
 
-Package license: GPL-2.0
+Package license: LGPL-2.1-or-later AND GPL-3.0-or-later
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gettext-feedstock/blob/master/LICENSE.txt)
 
