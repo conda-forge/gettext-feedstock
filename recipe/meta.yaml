@@ -33,12 +33,12 @@ build:
 requirements:
   build:
     - posix                              # [win]
-    - {{posix}}autoconf                  # [win]
-    - {{posix}}automake{{ am_version }}  # [win]
-    - {{posix}}libtool
-    - {{posix}}patch                     # [win]
-    - {{native}}binutils                 # [win]
-    - {{native}}crt-git                  # [win]
+    - {{ posix }}autoconf                  # [win]
+    - {{ posix }}automake{{ am_version }}  # [win]
+    - {{ posix }}libtool
+    - {{ posix }}patch                     # [win]
+    - {{ native }}binutils                 # [win]
+    - {{ native }}crt-git                  # [win]
     - {{ compiler('c') }}                # [not win]
     - {{ compiler('cxx') }}              # [not win]
     - make                               # [unix]
@@ -61,7 +61,7 @@ test:
 
 about:
   home: https://www.gnu.org/software/gettext/
-  license: GPL-2.0
+  license: LGPL-2.1-or-later AND GPL-3.0-or-later
   license_file: COPYING
   summary: Internationalization package
 
