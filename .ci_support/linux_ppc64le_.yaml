@@ -13,5 +13,3 @@ libffi:
 pin_run_as_build:
   libffi:
     max_pin: x.x
-target_platform:
-- linux-ppc64le
