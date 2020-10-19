@@ -2,7 +2,7 @@
 
 set -e
 
-if [[ "$target_platform" == win* ]] ; then
+if [[ $(uname -o) == "Msys" ]] ; then
     export PREFIX="$LIBRARY_PREFIX_U"
     export PATH="$PATH_OVERRIDE"
     export BUILD=x86_64-pc-mingw64
@@ -51,9 +51,6 @@ if [[ "$target_platform" == win* ]] ; then
     export CXXFLAGS=$(echo " $CXXFLAGS " |sed -e "s, [-/]GL ,,")
 
     autoreconf -vfi
-else
-    # Get an updated config.sub and config.guess
-   cp $BUILD_PREFIX/share/libtool/build-aux/config.* build-aux/
 fi
 
 ./configure --prefix=$PREFIX --build=$BUILD --host=$HOST
