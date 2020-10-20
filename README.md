@@ -3,7 +3,7 @@ About gettext
 
 Home: https://www.gnu.org/software/gettext/
 
-Package license: GPL-2.0
+Package license: LGPL-2.1-or-later AND GPL-3.0-or-later
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gettext-feedstock/blob/master/LICENSE.txt)
 
@@ -13,7 +13,21 @@ Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>Travis</td>
+    <td>
+      <a href="https://travis-ci.com/conda-forge/gettext-feedstock">
+        <img alt="macOS" src="https://img.shields.io/travis/com/conda-forge/gettext-feedstock/master.svg?label=macOS">
+      </a>
+    </td>
+  </tr><tr>
+    <td>Drone</td>
+    <td>
+      <a href="https://cloud.drone.io/conda-forge/gettext-feedstock">
+        <img alt="linux" src="https://img.shields.io/drone/build/conda-forge/gettext-feedstock/master.svg?label=Linux">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>

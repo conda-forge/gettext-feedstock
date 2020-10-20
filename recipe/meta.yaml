@@ -22,7 +22,7 @@ source:
     - 0009-Use-the-C-hack-in-a-few-more-files.patch                    # [win]
 
 build:
-  number: 1003
+  number: 1004
   run_exports:
     # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
     - {{ pin_subpackage('gettext') }}
@@ -32,22 +32,25 @@ build:
 
 requirements:
   build:
-    - posix                                # [win]
+    - posix                              # [win]
     - {{ posix }}autoconf                  # [win]
     - {{ posix }}automake{{ am_version }}  # [win]
     - {{ posix }}libtool
     - {{ posix }}patch                     # [win]
     - {{ native }}binutils                 # [win]
     - {{ native }}crt-git                  # [win]
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-    - make                                 # [unix]
+    - {{ compiler('c') }}                # [not win]
+    - {{ compiler('cxx') }}              # [not win]
+    - make                               # [unix]
+    - vs2015_win-64                      # [win] -- no VS2008 since it's just a pain to work with
   host:
     - libffi
     - libiconv  # [not linux]
 
 test:
   commands:
+    - msgfmt.exe -o %RECIPE_DIR%\an.gmo %RECIPE_DIR%\an.po                 # [win]
+    - msgfmt -o $RECIPE_DIR/an.gmo $RECIPE_DIR/an.po                     # [not win]
     {% set lib_idents = [ "gettextlib", "gettextpo", "gettextsrc" ] %}
     {% set lib_idents = lib_idents + [ "intl" ] %}                         # [not linux]
     {% for lib_ident in lib_idents %}
@@ -58,7 +61,7 @@ test:
 
 about:
   home: https://www.gnu.org/software/gettext/
-  license: GPL-2.0
+  license: LGPL-2.1-or-later AND GPL-3.0-or-later
   license_file: COPYING
   summary: Internationalization package
 
