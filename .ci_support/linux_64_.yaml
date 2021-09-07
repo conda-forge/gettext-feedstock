@@ -15,7 +15,7 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-comp7
 libffi:
-- '3.3'
+- '3.4'
 pin_run_as_build:
   libffi:
     max_pin: x.x
@@ -24,3 +24,5 @@ target_platform:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
+- - cdt_name
+  - docker_image
