@@ -22,7 +22,7 @@ source:
     - 0009-Use-the-C-hack-in-a-few-more-files.patch                    # [win]
 
 build:
-  number: 1008
+  number: 1009
   run_exports:
     # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
     - {{ pin_subpackage('gettext') }}
