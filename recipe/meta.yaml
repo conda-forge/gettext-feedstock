@@ -1,4 +1,4 @@
-{% set version = "0.19.8.1" %}
+{% set version = "0.21" %}
 {% set am_version = "1.15" %} #  keep synchronized with build.sh
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://ftp.gnu.org/pub/gnu/gettext/gettext-{{ version }}.tar.xz
-  sha256: 105556dbc5c3fbbc2aa0edb46d22d055748b6f5c7cd7a8d99f8e7eb84e938be4
+  sha256: d20fcbb537e02dcf1383197ba05bd0734ef7bf5db06bdb241eb69b7d16b73192
   patches:
     - 0001-Mark-v-snprintf-as-available.patch                          # [win]
     - 0002-Prevent-libtool-from-worrying-about-dependent-librar.patch  # [win]
@@ -22,7 +22,7 @@ source:
     - 0009-Use-the-C-hack-in-a-few-more-files.patch                    # [win]
 
 build:
-  number: 1009
+  number: 0
   run_exports:
     # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
     - {{ pin_subpackage('gettext') }}
