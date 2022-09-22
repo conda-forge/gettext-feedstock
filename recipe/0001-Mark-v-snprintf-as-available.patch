@@ -18,24 +18,24 @@ as available.
  5 files changed, 10 insertions(+)
 
 diff --git a/configure.ac b/configure.ac
-index 78a063b..8ef1e3f 100644
+index 49689fb..29378c0 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -23,6 +23,8 @@ AC_INIT([gettext],
- 	[bug-gnu-gettext@gnu.org])
+@@ -22,6 +22,8 @@ AC_INIT([gettext],
+ 	[bug-gettext@gnu.org])
  AC_CONFIG_SRCDIR([gettext-tools/src/msgfmt.c])
  AC_CONFIG_AUX_DIR([build-aux])
 +ac_cv_func_snprintf=yes
 +ac_cv_func_vsnprintf=yes
- AM_INIT_AUTOMAKE([1.13 silent-rules parallel-tests dist-xz dist-lzip])
+ AM_INIT_AUTOMAKE([1.13 silent-rules parallel-tests tar-ustar])
  
  dnl Override automake's tar command used for creating distributions.
 diff --git a/gettext-runtime/configure.ac b/gettext-runtime/configure.ac
-index 71adec3..9e3ac51 100644
+index b2bfda5..6f56e24 100644
 --- a/gettext-runtime/configure.ac
 +++ b/gettext-runtime/configure.ac
 @@ -22,6 +22,8 @@ AC_INIT([gettext-runtime],
- 	[bug-gnu-gettext@gnu.org])
+ 	[bug-gettext@gnu.org])
  AC_CONFIG_SRCDIR([intl/dcigettext.c])
  AC_CONFIG_AUX_DIR([../build-aux])
 +ac_cv_func_snprintf=yes
@@ -44,10 +44,10 @@ index 71adec3..9e3ac51 100644
  AC_CONFIG_HEADERS([config.h])
  
 diff --git a/gettext-runtime/libasprintf/configure.ac b/gettext-runtime/libasprintf/configure.ac
-index 736bf48..8f36a5f 100644
+index 776a1f4..7896746 100644
 --- a/gettext-runtime/libasprintf/configure.ac
 +++ b/gettext-runtime/libasprintf/configure.ac
-@@ -20,6 +20,8 @@ AC_PREREQ([2.59])
+@@ -20,6 +20,8 @@ AC_PREREQ([2.63])
  AC_INIT([libasprintf], [1.0])
  AC_CONFIG_SRCDIR([vasprintf.c])
  AC_CONFIG_AUX_DIR([../../build-aux])
@@ -57,11 +57,11 @@ index 736bf48..8f36a5f 100644
  AC_CONFIG_HEADERS([config.h])
  
 diff --git a/gettext-tools/configure.ac b/gettext-tools/configure.ac
-index 3b132ed..896be75 100644
+index 04db781..0117852 100644
 --- a/gettext-tools/configure.ac
 +++ b/gettext-tools/configure.ac
 @@ -22,6 +22,8 @@ AC_INIT([gettext-tools],
- 	[bug-gnu-gettext@gnu.org])
+ 	[bug-gettext@gnu.org])
  AC_CONFIG_SRCDIR([src/msgfmt.c])
  AC_CONFIG_AUX_DIR([../build-aux])
 +ac_cv_func_snprintf=yes
@@ -70,11 +70,11 @@ index 3b132ed..896be75 100644
  AC_CONFIG_HEADERS([config.h])
  
 diff --git a/gettext-tools/examples/configure.ac b/gettext-tools/examples/configure.ac
-index c395c3d..82038a4 100644
+index b25e72a..7385e8f 100644
 --- a/gettext-tools/examples/configure.ac
 +++ b/gettext-tools/examples/configure.ac
 @@ -22,6 +22,8 @@ AC_INIT([gettext-examples],
- 	[bug-gnu-gettext@gnu.org])
+ 	[bug-gettext@gnu.org])
  AC_CONFIG_SRCDIR([installpaths.in])
  AC_CONFIG_AUX_DIR([../../build-aux])
 +ac_cv_func_snprintf=yes
@@ -82,6 +82,3 @@ index c395c3d..82038a4 100644
  AM_INIT_AUTOMAKE([silent-rules])
  
  dnl Installation directories.
--- 
-2.17.1
-
