@@ -60,7 +60,18 @@ else
    export CPP="$CC -E"
 fi
 
-./configure --prefix=$PREFIX --build=$BUILD --host=$HOST
+./configure \
+  --prefix=$PREFIX \
+  --build=$BUILD \
+  --host=$HOST \
+  --disable-csharp \
+  --disable-dependency-tracking \
+  --disable-java \
+  --disable-native-java \
+  --disable-openmp \
+  --enable-fast-install \
+  --without-emacs
+
 make -j${CPU_COUNT} ${VERBOSE_AT}
 make install
 
