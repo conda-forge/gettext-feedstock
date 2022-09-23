@@ -44,11 +44,14 @@ if [[ "$target_platform" == win* ]] ; then
 
     export LDFLAGS="$LDFLAGS -L/mingw-w64/x86_64-w64-mingw32/lib -L$PREFIX/lib -ladvapi32"
 
-    # /GL messes up Libtool's identification of how the linker works;
+    # We need the -MD flag ("link with MSVCRT.lib"); otherwise our executables
+    # can crash with error -1073740791 = 0xC0000409 = STATUS_STACK_BUFFER_OVERRUN
+    #
+    # But -GL messes up Libtool's identification of how the linker works;
     # it parses dumpbin output and: https://stackoverflow.com/a/11850034/3760486
 
-    export CFLAGS=$(echo " $CFLAGS " |sed -e "s, [-/]GL ,,")
-    export CXXFLAGS=$(echo " $CXXFLAGS " |sed -e "s, [-/]GL ,,")
+    export CFLAGS=$(echo "-MD $CFLAGS" |sed -e "s, [-/]GL ,,")
+    export CXXFLAGS=$(echo "-MD $CXXFLAGS" |sed -e "s, [-/]GL ,,")
 
     autoreconf -vfi
 else
