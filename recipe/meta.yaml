@@ -47,8 +47,8 @@ requirements:
 
 test:
   commands:
-    - msgfmt.exe -o %RECIPE_DIR%\an.gmo %RECIPE_DIR%\an.po                 # [win]
-    - msgfmt -o $RECIPE_DIR/an.gmo $RECIPE_DIR/an.po                     # [not win]
+    - msgfmt.exe -o %TMP%\an.gmo %RECIPE_DIR%\an.po                        # [win]
+    - msgfmt -o $RECIPE_DIR/an.gmo $RECIPE_DIR/an.po                       # [not win]
     {% set lib_idents = [ "gettextlib", "gettextpo", "gettextsrc" ] %}
     {% set lib_idents = lib_idents + [ "intl" ] %}                         # [not linux]
     {% for lib_ident in lib_idents %}
