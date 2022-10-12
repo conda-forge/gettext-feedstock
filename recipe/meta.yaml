@@ -18,6 +18,7 @@ source:
     - 0005-CXXLD-is-not-a-thing.patch                                  # [win]
     - 0007-Work-around-Unixisms-in-libgettextpo.patch                  # [win]
     - 0008-Add-missing-extern-C-protectors.patch                       # [win]
+    - 0009-Avoid-close-inconsistencies.patch                           # [win]
 
 build:
   number: 0
