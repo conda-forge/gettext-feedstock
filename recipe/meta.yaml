@@ -1,4 +1,4 @@
-{% set version = "0.21" %}
+{% set version = "0.21.1" %}
 {% set am_version = "1.15" %} #  keep synchronized with build.sh
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -9,14 +9,13 @@ package:
 
 source:
   url: https://ftp.gnu.org/pub/gnu/gettext/gettext-{{ version }}.tar.xz
-  sha256: d20fcbb537e02dcf1383197ba05bd0734ef7bf5db06bdb241eb69b7d16b73192
+  sha256: 50dbc8f39797950aa2c98e939947c527e5ac9ebd2c1b99dd7b06ba33a6767ae6
   patches:
     - 0001-Mark-v-snprintf-as-available.patch                          # [win]
     - 0002-Prevent-libtool-from-worrying-about-dependent-librar.patch  # [win]
     - 0003-Fix-some-DLL-export-markings-in-libintl.patch               # [win]
     - 0004-Fix-quoting-when-invoking-windres.patch                     # [win]
     - 0005-CXXLD-is-not-a-thing.patch                                  # [win]
-    - 0006-Fix-compiler-wrapper.patch                                  # [win]
     - 0007-Work-around-Unixisms-in-libgettextpo.patch                  # [win]
     - 0008-Add-missing-extern-C-protectors.patch                       # [win]
 

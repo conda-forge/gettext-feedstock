@@ -24,10 +24,10 @@ index e2a935d..889c0c9 100644
  # Use the same definition of CXXLD as Automake generates in other Makefiles.
  CXXLD = $(CXX)
 diff --git a/gettext-tools/src/Makefile.am b/gettext-tools/src/Makefile.am
-index d88a929..bbcd8a7 100644
+index 0f2453a..f6dd16a 100644
 --- a/gettext-tools/src/Makefile.am
 +++ b/gettext-tools/src/Makefile.am
-@@ -481,47 +481,47 @@ xgettext_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+@@ -480,47 +480,47 @@ xgettext_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
  else
  libgettextsrc_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
  	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \

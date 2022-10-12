@@ -18,11 +18,11 @@ errors.
  gettext-tools/src/po-gram-gen2.h               |  9 +++++++++
  
 diff --git a/gettext-tools/gnulib-lib/exitfail.h b/gettext-tools/gnulib-lib/exitfail.h
-index fb93496..8d30796 100644
+index e218d11..eff0219 100644
 --- a/gettext-tools/gnulib-lib/exitfail.h
 +++ b/gettext-tools/gnulib-lib/exitfail.h
 @@ -15,4 +15,12 @@
-    You should have received a copy of the GNU General Public License
+    You should have received a copy of the GNU Lesser General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
  
 +#ifdef __cplusplus
@@ -35,11 +35,11 @@ index fb93496..8d30796 100644
 +}
 +#endif
 diff --git a/gettext-tools/libgettextpo/exitfail.h b/gettext-tools/libgettextpo/exitfail.h
-index fb93496..8d30796 100644
+index e218d11..eff0219 100644
 --- a/gettext-tools/libgettextpo/exitfail.h
 +++ b/gettext-tools/libgettextpo/exitfail.h
 @@ -15,4 +15,12 @@
-    You should have received a copy of the GNU General Public License
+    You should have received a copy of the GNU Lesser General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
  
 +#ifdef __cplusplus
@@ -76,7 +76,7 @@ index e6c52bb..d736ef0 100644
 +
  #endif /* _PLURAL_TABLE_H */
 diff --git a/gettext-tools/src/po-gram-gen2.h b/gettext-tools/src/po-gram-gen2.h
-index 9d15930..6d239e4 100644
+index 5fbf6b8..de41183 100644
 --- a/gettext-tools/src/po-gram-gen2.h
 +++ b/gettext-tools/src/po-gram-gen2.h
 @@ -37,6 +37,11 @@
@@ -91,9 +91,9 @@ index 9d15930..6d239e4 100644
  /* Debug traces.  */
  #ifndef PO_GRAM_DEBUG
  # if defined YYDEBUG
-@@ -107,4 +112,8 @@ extern DLL_VARIABLE PO_GRAM_STYPE po_gram_lval;
- 
+@@ -109,4 +114,8 @@ extern DLL_VARIABLE PO_GRAM_STYPE po_gram_lval;
  int po_gram_parse (void);
+ 
  
 +#ifdef __cplusplus
 +}

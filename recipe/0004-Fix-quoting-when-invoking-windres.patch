@@ -6,58 +6,6 @@ Subject: [PATCH 4/9] Fix quoting when invoking "windres"
 Version strings were being quoted too much. I'm not sure why this wasn't a
 problem elsewhere, but it's definitely a problem on Windows.
 ---
-diff --git a/gettext-runtime/intl/Makefile.am b/gettext-runtime/intl/Makefile.am
-index 22de832..730c398 100644
---- a/gettext-runtime/intl/Makefile.am
-+++ b/gettext-runtime/intl/Makefile.am
-@@ -473,7 +473,7 @@ libintl.res.lo: $(srcdir)/libintl.rc
- 	sed_extract_minor='/^[0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
- 	sed_extract_subminor='/^[0-9][0-9]*[.][0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.][0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
- 	$(LIBTOOL) --tag=RC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(RC) \
--	  "-DPACKAGE_VERSION_STRING=\\\"$(VERSION)\\\"" \
-+	  "-DPACKAGE_VERSION_STRING=\"$(VERSION)\"" \
- 	  "-DPACKAGE_VERSION_MAJOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_major"` \
- 	  "-DPACKAGE_VERSION_MINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_minor"` \
- 	  "-DPACKAGE_VERSION_SUBMINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_subminor"` \
-diff --git a/gettext-runtime/intl/Makefile.in b/gettext-runtime/intl/Makefile.in
-index 7999d34..9389487 100644
---- a/gettext-runtime/intl/Makefile.in
-+++ b/gettext-runtime/intl/Makefile.in
-@@ -2106,7 +2106,7 @@ windows-once.lo:     ../config.h $(srcdir)/windows-once.h
- @WOE32_TRUE@	sed_extract_minor='/^[0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
- @WOE32_TRUE@	sed_extract_subminor='/^[0-9][0-9]*[.][0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.][0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
- @WOE32_TRUE@	$(LIBTOOL) --tag=RC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(RC) \
--@WOE32_TRUE@	  "-DPACKAGE_VERSION_STRING=\\\"$(VERSION)\\\"" \
-+@WOE32_TRUE@	  "-DPACKAGE_VERSION_STRING=\"$(VERSION)\"" \
- @WOE32_TRUE@	  "-DPACKAGE_VERSION_MAJOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_major"` \
- @WOE32_TRUE@	  "-DPACKAGE_VERSION_MINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_minor"` \
- @WOE32_TRUE@	  "-DPACKAGE_VERSION_SUBMINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_subminor"` \
-diff --git a/gettext-runtime/libasprintf/Makefile.am b/gettext-runtime/libasprintf/Makefile.am
-index be78f68..b1db41c 100644
---- a/gettext-runtime/libasprintf/Makefile.am
-+++ b/gettext-runtime/libasprintf/Makefile.am
-@@ -88,7 +88,7 @@ libasprintf.res.lo: $(srcdir)/libasprintf.rc
- 	sed_extract_minor='/^[0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
- 	sed_extract_subminor='/^[0-9][0-9]*[.][0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.][0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
- 	$(LIBTOOL) --tag=RC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(RC) \
--	  "-DPACKAGE_VERSION_STRING=\\\"$(VERSION)\\\"" \
-+	  "-DPACKAGE_VERSION_STRING=\"$(VERSION)\"" \
- 	  "-DPACKAGE_VERSION_MAJOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_major"` \
- 	  "-DPACKAGE_VERSION_MINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_minor"` \
- 	  "-DPACKAGE_VERSION_SUBMINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_subminor"` \
-diff --git a/gettext-runtime/libasprintf/Makefile.in b/gettext-runtime/libasprintf/Makefile.in
-index 44f1985..5af7719 100644
---- a/gettext-runtime/libasprintf/Makefile.in
-+++ b/gettext-runtime/libasprintf/Makefile.in
-@@ -1396,7 +1396,7 @@ lib-asprintf.lo: $(lib_asprintf_EXTRASOURCES)
- @WOE32_TRUE@	sed_extract_minor='/^[0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
- @WOE32_TRUE@	sed_extract_subminor='/^[0-9][0-9]*[.][0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.][0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
- @WOE32_TRUE@	$(LIBTOOL) --tag=RC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(RC) \
--@WOE32_TRUE@	  "-DPACKAGE_VERSION_STRING=\\\"$(VERSION)\\\"" \
-+@WOE32_TRUE@	  "-DPACKAGE_VERSION_STRING=\"$(VERSION)\"" \
- @WOE32_TRUE@	  "-DPACKAGE_VERSION_MAJOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_major"` \
- @WOE32_TRUE@	  "-DPACKAGE_VERSION_MINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_minor"` \
- @WOE32_TRUE@	  "-DPACKAGE_VERSION_SUBMINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_subminor"` \
 diff --git a/gettext-runtime/src/Makefile.am b/gettext-runtime/src/Makefile.am
 index e860034..c913416 100644
 --- a/gettext-runtime/src/Makefile.am
@@ -72,10 +20,10 @@ index e860034..c913416 100644
  else
  WOE32_LDADD =
 diff --git a/gettext-tools/intl/Makefile.am b/gettext-tools/intl/Makefile.am
-index 22de832..730c398 100644
+index a3e9a79..f2a03c6 100644
 --- a/gettext-tools/intl/Makefile.am
 +++ b/gettext-tools/intl/Makefile.am
-@@ -473,7 +473,7 @@ libintl.res.lo: $(srcdir)/libintl.rc
+@@ -486,7 +486,7 @@ libintl.res.lo: $(srcdir)/libintl.rc
  	sed_extract_minor='/^[0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
  	sed_extract_subminor='/^[0-9][0-9]*[.][0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.][0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
  	$(LIBTOOL) --tag=RC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(RC) \
@@ -85,10 +33,10 @@ index 22de832..730c398 100644
  	  "-DPACKAGE_VERSION_MINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_minor"` \
  	  "-DPACKAGE_VERSION_SUBMINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_subminor"` \
 diff --git a/gettext-tools/libgettextpo/Makefile.am b/gettext-tools/libgettextpo/Makefile.am
-index 59b016e..12d121b 100644
+index f63a136..7a50356 100644
 --- a/gettext-tools/libgettextpo/Makefile.am
 +++ b/gettext-tools/libgettextpo/Makefile.am
-@@ -138,7 +138,7 @@ EXTRA_DIST += libgettextpo.rc
+@@ -141,7 +141,7 @@ EXTRA_DIST += libgettextpo.rc
  if WOE32
  WOE32_LIBADD = libgettextpo.res.lo
  libgettextpo.res.lo : $(srcdir)/libgettextpo.rc
@@ -98,10 +46,10 @@ index 59b016e..12d121b 100644
  else
  WOE32_LIBADD =
 diff --git a/gettext-tools/src/Makefile.am b/gettext-tools/src/Makefile.am
-index 764ffad..d88a929 100644
+index 510ab2a..0f2453a 100644
 --- a/gettext-tools/src/Makefile.am
 +++ b/gettext-tools/src/Makefile.am
-@@ -725,7 +725,7 @@ RELOCATABLE_STRIP = :
+@@ -743,7 +743,7 @@ RELOCATABLE_STRIP = :
  if WOE32
  WOE32_LDADD = gettext.res
  gettext.res : $(top_srcdir)/../windows/gettext.rc
@@ -111,10 +59,10 @@ index 764ffad..d88a929 100644
  else
  WOE32_LDADD =
 diff --git a/libtextstyle/lib/Makefile.am b/libtextstyle/lib/Makefile.am
-index 1a06fa4..52f18df 100644
+index 6bf636d..f73b3d7 100644
 --- a/libtextstyle/lib/Makefile.am
 +++ b/libtextstyle/lib/Makefile.am
-@@ -266,7 +266,7 @@ libtextstyle.res.lo: $(srcdir)/libtextstyle.rc
+@@ -265,7 +265,7 @@ libtextstyle.res.lo: $(srcdir)/libtextstyle.rc
  	sed_extract_minor='/^[0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
  	sed_extract_subminor='/^[0-9][0-9]*[.][0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.][0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
  	$(LIBTOOL) --tag=RC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(RC) \
