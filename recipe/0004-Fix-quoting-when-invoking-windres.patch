@@ -6,6 +6,32 @@ Subject: [PATCH 4/9] Fix quoting when invoking "windres"
 Version strings were being quoted too much. I'm not sure why this wasn't a
 problem elsewhere, but it's definitely a problem on Windows.
 ---
+diff --git a/gettext-runtime/intl/Makefile.am b/gettext-runtime/intl/Makefile.am
+index a3e9a79..f2a03c6 100644
+--- a/gettext-runtime/intl/Makefile.am
++++ b/gettext-runtime/intl/Makefile.am
+@@ -486,7 +486,7 @@ libintl.res.lo: $(srcdir)/libintl.rc
+ 	sed_extract_minor='/^[0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
+ 	sed_extract_subminor='/^[0-9][0-9]*[.][0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.][0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
+ 	$(LIBTOOL) --tag=RC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(RC) \
+-	  "-DPACKAGE_VERSION_STRING=\\\"$(VERSION)\\\"" \
++	  "-DPACKAGE_VERSION_STRING=\"$(VERSION)\"" \
+ 	  "-DPACKAGE_VERSION_MAJOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_major"` \
+ 	  "-DPACKAGE_VERSION_MINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_minor"` \
+ 	  "-DPACKAGE_VERSION_SUBMINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_subminor"` \
+diff --git a/gettext-runtime/libasprintf/Makefile.am b/gettext-runtime/libasprintf/Makefile.am
+index be78f68..b1db41c 100644
+--- a/gettext-runtime/libasprintf/Makefile.am
++++ b/gettext-runtime/libasprintf/Makefile.am
+@@ -88,7 +88,7 @@ libasprintf.res.lo: $(srcdir)/libasprintf.rc
+ 	sed_extract_minor='/^[0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
+ 	sed_extract_subminor='/^[0-9][0-9]*[.][0-9][0-9]*[.][0-9]/{'$${nl}'s/^[0-9]*[.][0-9]*[.]\([0-9]*\).*/\1/p'$${nl}q$${nl}'}'$${nl}'c\'$${nl}0$${nl}q; \
+ 	$(LIBTOOL) --tag=RC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(RC) \
+-	  "-DPACKAGE_VERSION_STRING=\\\"$(VERSION)\\\"" \
++	  "-DPACKAGE_VERSION_STRING=\"$(VERSION)\"" \
+ 	  "-DPACKAGE_VERSION_MAJOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_major"` \
+ 	  "-DPACKAGE_VERSION_MINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_minor"` \
+ 	  "-DPACKAGE_VERSION_SUBMINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_subminor"` \
 diff --git a/gettext-runtime/src/Makefile.am b/gettext-runtime/src/Makefile.am
 index e860034..c913416 100644
 --- a/gettext-runtime/src/Makefile.am
@@ -71,3 +97,4 @@ index 6bf636d..f73b3d7 100644
  	  "-DPACKAGE_VERSION_MAJOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_major"` \
  	  "-DPACKAGE_VERSION_MINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_minor"` \
  	  "-DPACKAGE_VERSION_SUBMINOR="`echo '$(VERSION)' | sed -n -e "$$sed_extract_subminor"` \
+
