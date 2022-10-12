@@ -35,6 +35,7 @@ requirements:
     - {{ posix }}automake{{ am_version }}  # [win]
     - {{ posix }}libtool
     - {{ posix }}patch                     # [win]
+    - {{ posix }}sed                       # [win]
     - {{ native }}binutils                 # [win]
     - {{ native }}crt-git                  # [win]
     - {{ compiler('c') }}                # [not win]

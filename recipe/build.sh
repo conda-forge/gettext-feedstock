@@ -14,22 +14,22 @@ if [[ "$target_platform" == win* ]] ; then
     export ACLOCAL=aclocal-$am_version
     export AUTOMAKE=automake-$am_version
 
-    # So, some autoconf checks depend on the C compiler name starting with
-    # "cl" to detect that it's using MSVC. Inside `configure`, the CC variable
-    # gets the path to the "compile" script prepended; this script translates
-    # arguments. But the variable CXX does *not* get changed the same way, and
-    # due to some flags added in gettext, the tests for a working C++ compiler
-    # fail. So we have to manually specify that it should go through the
-    # compile wrapper. Cf:
-    # https://lists.gnu.org/archive/html/autoconf/2009-11/msg00016.html
+    # Automake used to automatically deploy the "compile" wrapper script
+    # that wrapped MSVC to help it work more like Unix compilers. As of
+    # 0.21, we have to provide and use the script ourselves. Ditto for
+    # "ar-lib".
 
-    export CC="cl"
-    export CXX="$(pwd)/build-aux/compile cl"
-    export LD="link"
+    export AR="$RECIPE_DIR/ar-lib lib"
+    export CC="$RECIPE_DIR/compile cl -nologo"
     export CPP="cl -nologo -E"
+    export CXX="$RECIPE_DIR/compile cl -nologo"
     export CXXCPP="cl -nologo -E"
+    export LD="link"
+    export NM="dumpbin -symbols"
+    export RANLIB=":"
+    export STRIP=":"
 
-    # Buuut we also need a custom wrapper for `cl -nologo -E` because the
+    # We also need a custom wrapper for `cl -nologo -E` because the
     # invocation of the "windres"/"rc" tool can't handle preprocessor names
     # containing spaces. Windres also breaks if we don't use `--use-temp-file`
     # -- looks like the Cygwin popen() call might not work on Windows.
@@ -42,7 +42,7 @@ if [[ "$target_platform" == win* ]] ; then
     # have any needed Windows OS libraries specified anywhere, but it doesn't,
     # so we add them here too.
 
-    export LDFLAGS="$LDFLAGS -L/mingw-w64/x86_64-w64-mingw32/lib -L$PREFIX/lib -ladvapi32"
+    export LDFLAGS="$LDFLAGS -L/mingw-w64/x86_64-w64-mingw32/lib -L$PREFIX/lib"
 
     # We need the -MD flag ("link with MSVCRT.lib"); otherwise our executables
     # can crash with error -1073740791 = 0xC0000409 = STATUS_STACK_BUFFER_OVERRUN
