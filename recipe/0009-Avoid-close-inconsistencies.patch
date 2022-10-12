@@ -27,7 +27,7 @@ index 0f2453a..ba5bab9 100644
  msgexec_CPPFLAGS = $(AM_CPPFLAGS) -DINSTALLDIR=\"$(bindir)\"
  msgfilter_CPPFLAGS = $(AM_CPPFLAGS) -DINSTALLDIR=\"$(bindir)\"
 -msggrep_CPPFLAGS = $(AM_CPPFLAGS) -DINSTALLDIR=\"$(bindir)\"
-+msggrep_CPPFLAGS = -I$(top_srcdir)/libgrep $(AM_CPPFLAGS) -DINSTALLDIR=\"$(bindir)\"
++msggrep_CPPFLAGS = $(AM_CPPFLAGS) -I$(top_srcdir)/libgrep -DINSTALLDIR=\"$(bindir)\"
  msginit_CPPFLAGS = $(AM_CPPFLAGS) -DINSTALLDIR=\"$(bindir)\"
  msguniq_CPPFLAGS = $(AM_CPPFLAGS) -DINSTALLDIR=\"$(bindir)\"
  recode_sr_latin_CPPFLAGS = $(AM_CPPFLAGS) -DINSTALLDIR=\"$(bindir)\"
