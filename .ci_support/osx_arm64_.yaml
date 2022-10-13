@@ -12,15 +12,10 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '14'
-libffi:
-- '3.4'
 libiconv:
 - '1'
 macos_machine:
 - arm64-apple-darwin20.0.0
-pin_run_as_build:
-  libffi:
-    max_pin: x.x
 target_platform:
 - osx-arm64
 zip_keys:
