@@ -1,4 +1,4 @@
-{% set version = "0.21.1" %}
+{% set version = "0.22.5" %}
 {% set am_version = "1.15" %} #  keep synchronized with build.sh
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://ftp.gnu.org/pub/gnu/gettext/gettext-{{ version }}.tar.xz
-  sha256: 50dbc8f39797950aa2c98e939947c527e5ac9ebd2c1b99dd7b06ba33a6767ae6
+  sha256: fe10c37353213d78a5b83d48af231e005c4da84db5ce88037d88355938259640
   patches:
     - 0001-Mark-v-snprintf-as-available.patch                          # [win]
     - 0002-Prevent-libtool-from-worrying-about-dependent-librar.patch  # [win]
