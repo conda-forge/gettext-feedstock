@@ -4,7 +4,7 @@
 {% set native = 'm2w64-' if win else '' %}
 
 package:
-  name: gettext
+  name: gettext-split
   version: {{ version }}
 
 source:
@@ -22,9 +22,6 @@ source:
 
 build:
   number: 0
-  run_exports:
-    # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
-    - {{ pin_subpackage('gettext') }}
   ignore_run_exports:
     - libcxx
     - libstdcxx-ng
@@ -45,17 +42,160 @@ requirements:
   host:
     - libiconv  # [not linux]
 
-test:
-  commands:
-    - msgfmt.exe -o %TMP%\an.gmo %RECIPE_DIR%\an.po                        # [win]
-    - msgfmt -o $RECIPE_DIR/an.gmo $RECIPE_DIR/an.po                       # [not win]
-    {% set lib_idents = [ "gettextlib", "gettextpo", "gettextsrc" ] %}
-    {% set lib_idents = lib_idents + [ "intl" ] %}                         # [not linux]
-    {% for lib_ident in lib_idents %}
-    - test -f ${PREFIX}/lib/lib{{ lib_ident }}$SHLIB_EXT                   # [not win]
-    - if not exist %PREFIX%\Library\lib\{{ lib_ident }}.dll.lib exit /b 1  # [win]
-    - if not exist %PREFIX%\Library\bin\{{ lib_ident }}-*.dll exit /b 1    # [win]
-    {% endfor %}
+
+outputs:
+  - name: libintl
+    build:
+      run_exports:
+        # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
+        - {{ pin_subpackage('libintl') }}
+      ignore_run_exports:
+        - libcxx
+        - libstdcxx-ng
+    script: install-libintl.sh  # [unix]
+    script: install-libintl.bat  # [not unix]
+    requirements:
+      build:
+        - posix                              # [win]
+        - {{ posix }}autoconf                  # [win]
+        - {{ posix }}automake{{ am_version }}  # [win]
+        - {{ posix }}libtool
+        - {{ posix }}patch                     # [win]
+        - {{ posix }}sed                       # [win]
+        - {{ native }}binutils                 # [win]
+        - {{ native }}crt-git                  # [win]
+        - {{ compiler('c') }}                # [not win]
+        - {{ compiler('cxx') }}              # [not win]
+        - make                               # [unix]
+      host:
+        - libiconv  # [not linux]
+    about:
+      home: https://www.gnu.org/software/gettext/
+      license: LGPL-2.1-or-later
+      license_file: COPYING
+      summary: library that provides native language support to programs
+  - name: libasprintf
+    build:
+      run_exports:
+        # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
+        - {{ pin_subpackage('libasprintf') }}
+      ignore_run_exports:
+        - libcxx
+        - libstdcxx-ng
+    script: install-asprintf.sh  # [unix]
+    script: install-asprintf.bat  # [not unix]
+    requirements:
+      build:
+        - posix                              # [win]
+        - {{ posix }}autoconf                  # [win]
+        - {{ posix }}automake{{ am_version }}  # [win]
+        - {{ posix }}libtool
+        - {{ posix }}patch                     # [win]
+        - {{ posix }}sed                       # [win]
+        - {{ native }}binutils                 # [win]
+        - {{ native }}crt-git                  # [win]
+        - {{ compiler('c') }}                # [not win]
+        - {{ compiler('cxx') }}              # [not win]
+        - make                               # [unix]
+      host:
+        - libiconv  # [not linux]
+    about:
+      home: https://www.gnu.org/software/gettext/
+      license: LGPL-2.1-or-later
+      license_file: COPYING
+      summary: Decomposed printf argument list
+  - name: libgettextpo
+    build:
+      run_exports:
+        # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
+        - {{ pin_subpackage('libgettextpo') }}
+      ignore_run_exports:
+        - libcxx
+        - libstdcxx-ng
+    script: install-libgettextpo.sh  # [unix]
+    script: install-libgettextpo.bat  # [not unix]
+    requirements:
+      build:
+        - posix                              # [win]
+        - {{ posix }}autoconf                  # [win]
+        - {{ posix }}automake{{ am_version }}  # [win]
+        - {{ posix }}libtool
+        - {{ posix }}patch                     # [win]
+        - {{ posix }}sed                       # [win]
+        - {{ native }}binutils                 # [win]
+        - {{ native }}crt-git                  # [win]
+        - {{ compiler('c') }}                # [not win]
+        - {{ compiler('cxx') }}              # [not win]
+        - make                               # [unix]
+      host:
+        - {{ pin_subpackage('libintl', exact=True) }}
+        - libiconv  # [not linux]
+      run:
+        - {{ pin_subpackage('libintl', exact=True) }}
+    test:
+      commands:
+        # TODO: Only the actual binary (versioned) version should be in this package
+        - test -f ${PREFIX}/lib/libgettextpo.*.dylib                   # [osx]
+        - test -f ${PREFIX}/lib/libgettextpo.so.*                      # [linux]
+        - if not exist %PREFIX%\Library\bin\gettextpo-*.dll exit /b 1  # [win]
+        # The unversioned variants as well as the lib on Windows should be in the main gettext package.
+        - test ! -f ${PREFIX}/lib/libgettextpo$SHLIB_EXT               # [not win]
+        - if exist %PREFIX%\Library\lib\gettextpo.dll.lib exit /b 1    # [win]
+    about:
+      home: https://www.gnu.org/software/gettext/
+      license: GPL-3.0-or-later
+      license_file: COPYING
+      summary: library for interfacing programmatically with GNU gettext .po files
+  - name: gettext
+    build:
+      run_exports:
+        # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
+        - {{ pin_subpackage('libintl') }}
+        - {{ pin_subpackage('libasprintf') }}
+        - {{ pin_subpackage('libgettextpo') }}
+    script: install-gettext.sh  # [unix]
+    script: install-gettext.bat  # [not unix]
+    requirements:
+      build:
+        - posix                              # [win]
+        - {{ posix }}autoconf                  # [win]
+        - {{ posix }}automake{{ am_version }}  # [win]
+        - {{ posix }}libtool
+        - {{ posix }}patch                     # [win]
+        - {{ posix }}sed                       # [win]
+        - {{ native }}binutils                 # [win]
+        - {{ native }}crt-git                  # [win]
+        - {{ compiler('c') }}                # [not win]
+        - {{ compiler('cxx') }}              # [not win]
+        - make                               # [unix]
+      host:
+        - libiconv  # [not linux]
+        - {{ pin_subpackage('libintl', exact=True) }}
+        - {{ pin_subpackage('libasprintf', exact=True ) }}
+        - {{ pin_subpackage('libgettextpo', exact=True ) }}
+      run:
+        - {{ pin_subpackage('libintl', exact=True) }}
+        - {{ pin_subpackage('libasprintf', exact=True ) }}
+        - {{ pin_subpackage('libgettextpo', exact=True ) }}
+    test:
+      files:
+        - an.po
+      commands:
+        - msgfmt.exe -o an.gmo an.po                 # [win]
+        - msgfmt -o an.gmo an.po                     # [not win]
+        {% set lib_idents = [ "gettextlib", "gettextpo", "gettextsrc" ] %}
+        {% set lib_idents = lib_idents + [ "intl" ] %}                         # [not linux]
+        {% for lib_ident in lib_idents %}
+        - test -f ${PREFIX}/lib/lib{{ lib_ident }}$SHLIB_EXT                   # [not win]
+        - test ! -f ${PREFIX}/lib/lib{{ lib_ident }}.a                         # [not win]
+        - if not exist %PREFIX%\Library\lib\{{ lib_ident }}.dll.lib exit /b 1  # [win]
+        - if not exist %PREFIX%\Library\bin\{{ lib_ident }}-*.dll exit /b 1    # [win]
+        {% endfor %}
+    about:
+      home: https://www.gnu.org/software/gettext/
+      license: LGPL-2.1-or-later AND GPL-3.0-or-later
+      license_file: COPYING
+      summary: Internationalization package
 
 about:
   home: https://www.gnu.org/software/gettext/
@@ -64,6 +204,7 @@ about:
   summary: Internationalization package
 
 extra:
+  feedstock-name: gettext
   recipe-maintainers:
     - scopatz
     - ocefpaf

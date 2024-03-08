@@ -64,6 +64,7 @@ fi
   --prefix=$PREFIX \
   --build=$BUILD \
   --host=$HOST \
+  --disable-static \
   --disable-csharp \
   --disable-dependency-tracking \
   --disable-java \
@@ -73,9 +74,3 @@ fi
   --without-emacs
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
-make install
-
-# This overlaps with readline:
-rm -rf ${PREFIX}/share/info/dir
-
-find $PREFIX -name '*.la' -delete
