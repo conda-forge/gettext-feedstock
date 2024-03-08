@@ -82,6 +82,7 @@ outputs:
       ignore_run_exports:
         - libcxx
         - libstdcxx-ng
+        - libiconv
     script: install-asprintf.sh  # [unix]
     script: install-asprintf.bat  # [not unix]
     requirements:
