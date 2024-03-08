@@ -69,6 +69,15 @@ outputs:
         - make                               # [unix]
       host:
         - libiconv  # [not linux]
+    test:
+      commands:
+        # Only the actual binary (versioned) version should be in this package
+        - test -f ${PREFIX}/lib/libintl.*.dylib                   # [osx]
+        - test -f ${PREFIX}/lib/libintl.so.*                      # [linux]
+        - if not exist %PREFIX%\Library\bin\intl-*.dll exit /b 1  # [win]
+        # The unversioned variants as well as the lib on Windows should be in the main gettext package.
+        - test ! -f ${PREFIX}/lib/libintl$SHLIB_EXT               # [not win]
+        - if exist %PREFIX%\Library\lib\intl.dll.lib exit /b 1    # [win]
     about:
       home: https://www.gnu.org/software/gettext/
       license: LGPL-2.1-or-later
@@ -100,6 +109,15 @@ outputs:
         - make                               # [unix]
       host:
         - libiconv  # [not linux]
+    test:
+      commands:
+        # Only the actual binary (versioned) version should be in this package
+        - test -f ${PREFIX}/lib/libasprintf.*.dylib                   # [osx]
+        - test -f ${PREFIX}/lib/libasprintf.so.*                      # [linux]
+        - if not exist %PREFIX%\Library\bin\asprintf-*.dll exit /b 1  # [win]
+        # The unversioned variants as well as the lib on Windows should be in the main gettext package.
+        - test ! -f ${PREFIX}/lib/libasprintf$SHLIB_EXT               # [not win]
+        - if exist %PREFIX%\Library\lib\asprintf.dll.lib exit /b 1    # [win]
     about:
       home: https://www.gnu.org/software/gettext/
       license: LGPL-2.1-or-later
@@ -135,7 +153,7 @@ outputs:
         - {{ pin_subpackage('libintl', exact=True) }}
     test:
       commands:
-        # TODO: Only the actual binary (versioned) version should be in this package
+        # Only the actual binary (versioned) version should be in this package
         - test -f ${PREFIX}/lib/libgettextpo.*.dylib                   # [osx]
         - test -f ${PREFIX}/lib/libgettextpo.so.*                      # [linux]
         - if not exist %PREFIX%\Library\bin\gettextpo-*.dll exit /b 1  # [win]
