@@ -46,6 +46,7 @@ requirements:
 outputs:
   - name: libintl
     build:
+      skip: true  # [linux]
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libintl') }}
@@ -113,7 +114,7 @@ outputs:
       commands:
         # Only the actual binary (versioned) version should be in this package
         - test -f ${PREFIX}/lib/libasprintf.*.dylib                   # [osx]
-        - test -f ${PREFIX}/lib/libasprintf.so.*                      # [linux]
+        - test -f ${PREFIX}/lib/libasprintf.so.0                      # [linux]
         - if not exist %PREFIX%\Library\bin\asprintf-*.dll exit /b 1  # [win]
         # The unversioned variants as well as the lib on Windows should be in the main gettext package.
         - test ! -f ${PREFIX}/lib/libasprintf$SHLIB_EXT               # [not win]
@@ -147,15 +148,15 @@ outputs:
         - {{ compiler('cxx') }}              # [not win]
         - make                               # [unix]
       host:
-        - {{ pin_subpackage('libintl', exact=True) }}
+        - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
         - libiconv  # [not linux]
       run:
-        - {{ pin_subpackage('libintl', exact=True) }}
+        - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
     test:
       commands:
         # Only the actual binary (versioned) version should be in this package
         - test -f ${PREFIX}/lib/libgettextpo.*.dylib                   # [osx]
-        - test -f ${PREFIX}/lib/libgettextpo.so.*                      # [linux]
+        - test -f ${PREFIX}/lib/libgettextpo.so.0                      # [linux]
         - if not exist %PREFIX%\Library\bin\gettextpo-*.dll exit /b 1  # [win]
         # The unversioned variants as well as the lib on Windows should be in the main gettext package.
         - test ! -f ${PREFIX}/lib/libgettextpo$SHLIB_EXT               # [not win]
@@ -169,7 +170,7 @@ outputs:
     build:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
-        - {{ pin_subpackage('libintl') }}
+        - {{ pin_subpackage('libintl') }}  # [not linux]
         - {{ pin_subpackage('libasprintf') }}
         - {{ pin_subpackage('libgettextpo') }}
     script: install-gettext.sh  # [unix]
@@ -189,11 +190,11 @@ outputs:
         - make                               # [unix]
       host:
         - libiconv  # [not linux]
-        - {{ pin_subpackage('libintl', exact=True) }}
+        - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libasprintf', exact=True ) }}
         - {{ pin_subpackage('libgettextpo', exact=True ) }}
       run:
-        - {{ pin_subpackage('libintl', exact=True) }}
+        - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libasprintf', exact=True ) }}
         - {{ pin_subpackage('libgettextpo', exact=True ) }}
     test:
