@@ -3,24 +3,48 @@ About gettext-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gettext-feedstock/blob/main/LICENSE.txt)
 
+
+About gettext
+-------------
+
 Home: https://www.gnu.org/software/gettext/
 
 Package license: LGPL-2.1-or-later AND GPL-3.0-or-later
 
 Summary: Internationalization package
 
+About libasprintf
+-----------------
+
+Home: https://www.gnu.org/software/gettext/
+
+Package license: LGPL-2.1-or-later
+
+Summary: Decomposed printf argument list
+
+About libintl
+-------------
+
+Home: https://www.gnu.org/software/gettext/
+
+Package license: LGPL-2.1-or-later
+
+Summary: library that provides native language support to programs
+
+About libgettextpo
+------------------
+
+Home: https://www.gnu.org/software/gettext/
+
+Package license: GPL-3.0-or-later
+
+Summary: library for interfacing programmatically with GNU gettext .po files
+
 Current build status
 ====================
 
 
-<table><tr>
-    <td>Travis</td>
-    <td>
-      <a href="https://app.travis-ci.com/conda-forge/gettext-feedstock">
-        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/gettext-feedstock/main.svg?label=Linux">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
@@ -34,41 +58,6 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>win_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
@@ -89,6 +78,9 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gettext-green.svg)](https://anaconda.org/conda-forge/gettext) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gettext.svg)](https://anaconda.org/conda-forge/gettext) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gettext.svg)](https://anaconda.org/conda-forge/gettext) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gettext.svg)](https://anaconda.org/conda-forge/gettext) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libasprintf-green.svg)](https://anaconda.org/conda-forge/libasprintf) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libasprintf.svg)](https://anaconda.org/conda-forge/libasprintf) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libasprintf.svg)](https://anaconda.org/conda-forge/libasprintf) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libasprintf.svg)](https://anaconda.org/conda-forge/libasprintf) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libgettextpo-green.svg)](https://anaconda.org/conda-forge/libgettextpo) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgettextpo.svg)](https://anaconda.org/conda-forge/libgettextpo) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgettextpo.svg)](https://anaconda.org/conda-forge/libgettextpo) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgettextpo.svg)](https://anaconda.org/conda-forge/libgettextpo) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libintl-green.svg)](https://anaconda.org/conda-forge/libintl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libintl.svg)](https://anaconda.org/conda-forge/libintl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libintl.svg)](https://anaconda.org/conda-forge/libintl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libintl.svg)](https://anaconda.org/conda-forge/libintl) |
 
 Installing gettext
 ==================
@@ -100,16 +92,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `gettext` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `gettext, libasprintf, libgettextpo, libintl` can be installed with `conda`:
 
 ```
-conda install gettext
+conda install gettext libasprintf libgettextpo libintl
 ```
 
 or with `mamba`:
 
 ```
-mamba install gettext
+mamba install gettext libasprintf libgettextpo libintl
 ```
 
 It is possible to list all of the versions of `gettext` available on your platform with `conda`:
