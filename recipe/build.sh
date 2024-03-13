@@ -71,7 +71,7 @@ fi
   --disable-native-java \
   --disable-openmp \
   --enable-fast-install \
-  --without-emacs
+  --without-emacs || (cat config.log; exit 1)
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
 
