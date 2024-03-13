@@ -22,6 +22,7 @@ source:
 
 build:
   number: 0
+  skip: true  # [not win]
   ignore_run_exports:
     - libcxx
     - libstdcxx-ng
