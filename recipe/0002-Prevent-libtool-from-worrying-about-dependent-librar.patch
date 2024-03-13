@@ -1,7 +1,7 @@
 From e11f7bc727a6a3029c2f5b8f3002cd70817b2a8c Mon Sep 17 00:00:00 2001
 From: Peter Williams <peter@newton.cx>
 Date: Mon, 3 Sep 2018 17:32:14 -0400
-Subject: [PATCH 2/5] Prevent libtool from worrying about dependent libraries
+Subject: [PATCH 2/8] Prevent libtool from worrying about dependent libraries
  too much.
 
 Dependent libraries on Windows can take on a lot of names, depending on how

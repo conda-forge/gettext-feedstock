@@ -1,7 +1,7 @@
 From d7490b79ce621dc4d859c1a82712f2ffe7366593 Mon Sep 17 00:00:00 2001
 From: Peter Williams <peter@newton.cx>
 Date: Mon, 3 Sep 2018 17:34:54 -0400
-Subject: [PATCH 3/5] Fix some DLL export markings in libintl.
+Subject: [PATCH 3/8] Fix some DLL export markings in libintl.
 
 A few files had inconsistent labeling for DLL exporting, which I guess MSVC
 might be pickier about than it used to be. Tidy them up.

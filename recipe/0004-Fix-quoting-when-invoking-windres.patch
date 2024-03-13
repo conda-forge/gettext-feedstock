@@ -1,7 +1,7 @@
 From 62972ab62dd216ef95df90187487d14bc86e5def Mon Sep 17 00:00:00 2001
 From: Peter Williams <peter@newton.cx>
 Date: Mon, 3 Sep 2018 17:36:09 -0400
-Subject: [PATCH 4/5] Fix quoting when invoking "windres"
+Subject: [PATCH 4/8] Fix quoting when invoking "windres"
 
 Version strings were being quoted too much. I'm not sure why this wasn't a
 problem elsewhere, but it's definitely a problem on Windows.

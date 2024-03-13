@@ -16,9 +16,9 @@ source:
     - 0003-Fix-some-DLL-export-markings-in-libintl.patch               # [win]
     - 0004-Fix-quoting-when-invoking-windres.patch                     # [win]
     - 0005-CXXLD-is-not-a-thing.patch                                  # [win]
-    - 0007-Work-around-Unixisms-in-libgettextpo.patch                  # [win]
-    - 0008-Add-missing-extern-C-protectors.patch                       # [win]
-    - 0009-Avoid-close-inconsistencies.patch                           # [win]
+    - 0006-Work-around-Unixisms-in-libgettextpo.patch                  # [win]
+    - 0007-Add-missing-extern-C-protectors.patch                       # [win]
+    - 0008-Avoid-close-inconsistencies.patch                           # [win]
 
 build:
   number: 0

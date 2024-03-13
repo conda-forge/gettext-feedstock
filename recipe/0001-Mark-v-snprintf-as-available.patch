@@ -1,7 +1,7 @@
 From 4fa8feff0af88fb3c7dd3fceb722dabe48b6dfa0 Mon Sep 17 00:00:00 2001
 From: Peter Williams <peter@newton.cx>
 Date: Mon, 3 Sep 2018 17:28:40 -0400
-Subject: [PATCH 1/5] Mark (v)snprintf as available
+Subject: [PATCH 1/8] Mark (v)snprintf as available
 
 `configure` checks whether `snprintf` is available by attempting to link with
 it. Windows didn't used to provide it at all. However, newer Windows does

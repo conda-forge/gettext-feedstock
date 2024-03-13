@@ -1,7 +1,7 @@
 From 8538d082c870ef99bccb8c48acc0c40e525c07cb Mon Sep 17 00:00:00 2001
 From: Peter Williams <peter@newton.cx>
 Date: Mon, 3 Sep 2018 17:37:12 -0400
-Subject: [PATCH 5/5] CXXLD is not a thing.
+Subject: [PATCH 5/8] CXXLD is not a thing.
 
 Maybe it was at some point? But it isn't now. CCLD works fine on Windows since
 CC and CXX (the C and C++ compilers) are the same thing.
