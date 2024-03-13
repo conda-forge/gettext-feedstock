@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -exuo pipefail
 
 if [[ "$target_platform" == win* ]] ; then
     export PREFIX="$LIBRARY_PREFIX_U"
@@ -71,7 +71,7 @@ fi
   --disable-native-java \
   --disable-openmp \
   --enable-fast-install \
-  --without-emacs || (cat config.log; exit 1)
+  --without-emacs || (cat config.log; cat gettext-runtime/config.log; exit 1)
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
 
