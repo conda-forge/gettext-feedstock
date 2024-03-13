@@ -42,7 +42,7 @@ if [[ "$target_platform" == win* ]] ; then
     # have any needed Windows OS libraries specified anywhere, but it doesn't,
     # so we add them here too.
 
-    export LDFLAGS="$LDFLAGS -L/mingw-w64/x86_64-w64-mingw32/lib -L$PREFIX/lib"
+    export LDFLAGS="${LDFLAGS:-} -L/mingw-w64/x86_64-w64-mingw32/lib -L$PREFIX/lib"
 
     # We need the -MD flag ("link with MSVCRT.lib"); otherwise our executables
     # can crash with error -1073740791 = 0xC0000409 = STATUS_STACK_BUFFER_OVERRUN
@@ -73,6 +73,6 @@ fi
   --enable-fast-install \
   --without-emacs || (cat config.log; cat gettext-runtime/config.log; exit 1)
 
-make -j${CPU_COUNT} ${VERBOSE_AT}
+make -j${CPU_COUNT}
 
 find . -name '*.dll'
