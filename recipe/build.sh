@@ -20,10 +20,10 @@ if [[ "$target_platform" == win* ]] ; then
     # "ar-lib".
 
     export AR="$RECIPE_DIR/ar-lib lib"
-    export CC="$RECIPE_DIR/compile cl -nologo"
-    export CPP="cl -nologo -E"
-    export CXX="$RECIPE_DIR/compile cl -nologo"
-    export CXXCPP="cl -nologo -E"
+    export CC="$RECIPE_DIR/compile cl.exe -nologo"
+    export CPP="cl.exe -nologo -E"
+    export CXX="$RECIPE_DIR/compile cl.exe -nologo"
+    export CXXCPP="cl.exe -nologo -E"
     export LD="link"
     export NM="dumpbin -symbols"
     export RANLIB=":"

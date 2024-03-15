@@ -37,8 +37,8 @@ requirements:
     - {{ posix }}sed                       # [win]
     - {{ native }}binutils                 # [win]
     - {{ native }}crt-git                  # [win]
-    - {{ compiler('c') }}                # [not win]
-    - {{ compiler('cxx') }}              # [not win]
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - make                               # [unix]
   host:
     - libiconv  # [not linux]
