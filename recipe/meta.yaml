@@ -202,6 +202,8 @@ outputs:
       files:
         - an.po
       commands:
+        - dir  # [win]
+        - msgfmt.exe --help  # [win]
         - msgfmt.exe -o an.gmo an.po                 # [win]
         - msgfmt -o an.gmo an.po                     # [not win]
         {% set lib_idents = [ "gettextlib", "gettextpo", "gettextsrc" ] %}
