@@ -50,8 +50,8 @@ if [[ "$target_platform" == win* ]] ; then
     # But -GL messes up Libtool's identification of how the linker works;
     # it parses dumpbin output and: https://stackoverflow.com/a/11850034/3760486
 
-    export CFLAGS=$(echo "-MD $CFLAGS " |sed -e "s, [-/]GL ,,")
-    export CXXFLAGS=$(echo "-MD $CXXFLAGS " |sed -e "s, [-/]GL ,,")
+    export CFLAGS=$(echo "-MD ${CFLAGS:-} " |sed -e "s, [-/]GL ,,")
+    export CXXFLAGS=$(echo "-MD ${CXXFLAGS:-} " |sed -e "s, [-/]GL ,,")
 
     autoreconf -vfi
 else
