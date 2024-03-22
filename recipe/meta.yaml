@@ -85,6 +85,44 @@ outputs:
       license: LGPL-2.1-or-later
       license_file: COPYING
       summary: library that provides native language support to programs
+  - name: libintl-devel
+    build:
+      skip: true  # [linux]
+      run_exports:
+        # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
+        - {{ pin_subpackage('libintl') }}
+      ignore_run_exports:
+        - libcxx
+        - libstdcxx-ng
+    script: install-libintl-devel.sh  # [unix]
+    script: install-libintl-devel.bat  # [not unix]
+    requirements:
+      build:
+        - posix                              # [win]
+        - {{ posix }}autoconf                  # [win]
+        - {{ posix }}automake{{ am_version }}  # [win]
+        - {{ posix }}libtool
+        - {{ posix }}patch                     # [win]
+        - {{ posix }}sed                       # [win]
+        - {{ native }}binutils                 # [win]
+        - {{ native }}crt-git                  # [win]
+        - {{ compiler('c') }}                # [not win]
+        - {{ compiler('cxx') }}              # [not win]
+        - make                               # [unix]
+      host:
+        - libiconv  # [not linux]
+        - {{ pin_subpackage('libintl', exact=true) }}
+      run:
+        - {{ pin_subpackage('libintl', exact=true) }}
+    test:
+      commands:
+        - test -f ${PREFIX}/lib/libintl${SHLIB_EXT}                   # [osx]
+        - if not exist %PREFIX%\Library\lib\intl.dll.lib exit /b 1    # [win]
+    about:
+      home: https://www.gnu.org/software/gettext/
+      license: LGPL-2.1-or-later
+      license_file: COPYING
+      summary: library that provides native language support to programs
   - name: libasprintf
     build:
       run_exports:
@@ -120,6 +158,44 @@ outputs:
         # The unversioned variants as well as the lib on Windows should be in the main gettext package.
         - test ! -f ${PREFIX}/lib/libasprintf$SHLIB_EXT               # [not win]
         - if exist %PREFIX%\Library\lib\asprintf.dll.lib exit /b 1    # [win]
+    about:
+      home: https://www.gnu.org/software/gettext/
+      license: LGPL-2.1-or-later
+      license_file: COPYING
+      summary: Decomposed printf argument list
+  - name: libasprintf-devel
+    build:
+      run_exports:
+        # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
+        - {{ pin_subpackage('libasprintf') }}
+      ignore_run_exports:
+        - libcxx
+        - libstdcxx-ng
+        - libiconv
+    script: install-asprintf-devel.sh  # [unix]
+    script: install-asprintf-devel.bat  # [not unix]
+    requirements:
+      build:
+        - posix                              # [win]
+        - {{ posix }}autoconf                  # [win]
+        - {{ posix }}automake{{ am_version }}  # [win]
+        - {{ posix }}libtool
+        - {{ posix }}patch                     # [win]
+        - {{ posix }}sed                       # [win]
+        - {{ native }}binutils                 # [win]
+        - {{ native }}crt-git                  # [win]
+        - {{ compiler('c') }}                # [not win]
+        - {{ compiler('cxx') }}              # [not win]
+        - make                               # [unix]
+      host:
+        - libiconv  # [not linux]
+        - {{ pin_subpackage('libasprintf', exact=True) }}
+      run:
+        - {{ pin_subpackage('libasprintf', exact=True) }}
+    test:
+      commands:
+        - test -f ${PREFIX}/lib/libasprintf${SHLIB_EXT}               # [not win]
+        - if not exist %PREFIX%\Library\lib\asprintf.dll.lib exit /b 1    # [win]
     about:
       home: https://www.gnu.org/software/gettext/
       license: LGPL-2.1-or-later
@@ -167,13 +243,46 @@ outputs:
       license: GPL-3.0-or-later
       license_file: COPYING
       summary: library for interfacing programmatically with GNU gettext .po files
-  - name: gettext
+  - name: libgettextpo-devel
     build:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
-        - {{ pin_subpackage('libintl') }}  # [not linux]
-        - {{ pin_subpackage('libasprintf') }}
         - {{ pin_subpackage('libgettextpo') }}
+      ignore_run_exports:
+        - libcxx
+        - libstdcxx-ng
+    script: install-libgettextpo-devel.sh  # [unix]
+    script: install-libgettextpo-devel.bat  # [not unix]
+    requirements:
+      build:
+        - posix                              # [win]
+        - {{ posix }}autoconf                  # [win]
+        - {{ posix }}automake{{ am_version }}  # [win]
+        - {{ posix }}libtool
+        - {{ posix }}patch                     # [win]
+        - {{ posix }}sed                       # [win]
+        - {{ native }}binutils                 # [win]
+        - {{ native }}crt-git                  # [win]
+        - {{ compiler('c') }}                # [not win]
+        - {{ compiler('cxx') }}              # [not win]
+        - make                               # [unix]
+      host:
+        - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
+        - {{ pin_subpackage('libasprintf, exact=True) }}
+        - libiconv  # [not linux]
+      run:
+        - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
+        - {{ pin_subpackage('libasprintf, exact=True) }}
+    test:
+      commands:
+        - test -f ${PREFIX}/lib/libgettextpo$SHLIB_EXT               # [not win]
+        - if not exist %PREFIX%\Library\lib\gettextpo.dll.lib exit /b 1    # [win]
+    about:
+      home: https://www.gnu.org/software/gettext/
+      license: GPL-3.0-or-later
+      license_file: COPYING
+      summary: library for interfacing programmatically with GNU gettext .po files
+  - name: gettext-bin
     script: install-gettext.sh  # [unix]
     script: install-gettext.bat  # [not unix]
     requirements:
@@ -202,10 +311,57 @@ outputs:
       files:
         - an.po
       commands:
-        - dir  # [win]
         - msgfmt.exe --help  # [win]
         - msgfmt.exe -o an.gmo an.po                 # [win]
         - msgfmt -o an.gmo an.po                     # [not win]
+    about:
+      home: https://www.gnu.org/software/gettext/
+      # The binaries of gettext are the GPL-3.0 licensed part.
+      license: GPL-3.0-or-later
+      license_file: COPYING
+      summary: Internationalization package
+
+  - name: gettext
+    build:
+      run_exports:
+        # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
+        - {{ pin_subpackage('libintl') }}  # [not linux]
+        - {{ pin_subpackage('libasprintf') }}
+        - {{ pin_subpackage('libgettextpo') }}
+    script: install-gettext.sh  # [unix]
+    script: install-gettext.bat  # [not unix]
+    requirements:
+      build:
+        - posix                              # [win]
+        - {{ posix }}autoconf                  # [win]
+        - {{ posix }}automake{{ am_version }}  # [win]
+        - {{ posix }}libtool
+        - {{ posix }}patch                     # [win]
+        - {{ posix }}sed                       # [win]
+        - {{ native }}binutils                 # [win]
+        - {{ native }}crt-git                  # [win]
+        - {{ compiler('c') }}                # [not win]
+        - {{ compiler('cxx') }}              # [not win]
+        - make                               # [unix]
+      host:
+        - libiconv  # [not linux]
+        - {{ pin_subpackage('gettext-bin', exact=True) }}  # [not linux]
+        - {{ pin_subpackage('libintl-devel', exact=True) }}  # [not linux]
+        - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
+        - {{ pin_subpackage('libasprintf-devel', exact=True ) }}
+        - {{ pin_subpackage('libasprintf', exact=True ) }}
+        - {{ pin_subpackage('libgettextpo-devel', exact=True ) }}
+        - {{ pin_subpackage('libgettextpo', exact=True ) }}
+      run:
+        - {{ pin_subpackage('gettext-bin', exact=True) }}  # [not linux]
+        - {{ pin_subpackage('libintl-devel', exact=True) }}  # [not linux]
+        - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
+        - {{ pin_subpackage('libasprintf-devel', exact=True ) }}
+        - {{ pin_subpackage('libasprintf', exact=True ) }}
+        - {{ pin_subpackage('libgettextpo-devel', exact=True ) }}
+        - {{ pin_subpackage('libgettextpo', exact=True ) }}
+    test:
+      commands:
         {% set lib_idents = [ "gettextlib", "gettextpo", "gettextsrc" ] %}
         {% set lib_idents = lib_idents + [ "intl" ] %}                         # [not linux]
         {% for lib_ident in lib_idents %}
