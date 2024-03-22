@@ -309,8 +309,6 @@ outputs:
         - {{ pin_subpackage('libgettextpo-devel', exact=True ) }}
       run:
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
-        - {{ pin_subpackage('libasprintf', exact=True ) }}
-        - {{ pin_subpackage('libgettextpo', exact=True ) }}
     test:
       files:
         - an.po
