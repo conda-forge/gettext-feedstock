@@ -268,11 +268,11 @@ outputs:
         - make                               # [unix]
       host:
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
-        - {{ pin_subpackage('libasprintf, exact=True) }}
+        - {{ pin_subpackage('libgettextpo', exact=True) }}
         - libiconv  # [not linux]
       run:
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
-        - {{ pin_subpackage('libasprintf, exact=True) }}
+        - {{ pin_subpackage('libgettextpo', exact=True) }}
     test:
       commands:
         - test -f ${PREFIX}/lib/libgettextpo$SHLIB_EXT               # [not win]
