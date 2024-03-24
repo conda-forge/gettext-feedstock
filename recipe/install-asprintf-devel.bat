@@ -9,6 +9,7 @@ if errorlevel 1 exit 1
 if not exist %LIBRARY_PREFIX%\lib md %LIBRARY_PREFIX%\lib
 if errorlevel 1 exit 1
 
+dir gettext-runtime\libasprintf\.libs
 copy gettext-runtime\libasprintf\.libs\asprintf-0.dll.lib %LIBRARY_PREFIX%\lib\asprintf-0.dll.lib
 if errorlevel 1 exit 1
 
