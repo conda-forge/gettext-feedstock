@@ -1,6 +1,6 @@
 @echo on
 
-if not exist %LIBRARY_PREFIX%\copy md %LIBRARY_PREFIX%\include
+if not exist %LIBRARY_PREFIX%\include md %LIBRARY_PREFIX%\include
 if errorlevel 1 exit 1
 
 copy gettext-runtime\libasprintf\autosprintf.h %LIBRARY_PREFIX%\include\autosprintf.h
