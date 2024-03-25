@@ -9,6 +9,7 @@ if errorlevel 1 exit 1
 if not exist %LIBRARY_PREFIX%\lib md %LIBRARY_PREFIX%\lib
 if errorlevel 1 exit 1
 
+dir gettext-tools\libgettextpo\.libs
 copy gettext-tools\libgettextpo\.libs\gettextpo-0.dll.lib %LIBRARY_PREFIX%\lib
 if errorlevel 1 exit 1
 

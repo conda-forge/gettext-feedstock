@@ -9,6 +9,7 @@ if errorlevel 1 exit 1
 if not exist %LIBRARY_PREFIX%\lib md %LIBRARY_PREFIX%\lib
 if errorlevel 1 exit 1
 
+dir gettext-runtime\intl\.libs
 copy gettext-runtime\intl\.libs\intl-8.dll.lib %LIBRARY_PREFIX%\lib
 if errorlevel 1 exit 1
 
