@@ -22,24 +22,6 @@ Package license: LGPL-2.1-or-later
 
 Summary: Decomposed printf argument list
 
-About libintl
--------------
-
-Home: https://www.gnu.org/software/gettext/
-
-Package license: LGPL-2.1-or-later
-
-Summary: library that provides native language support to programs
-
-About libasprintf-devel
------------------------
-
-Home: https://www.gnu.org/software/gettext/
-
-Package license: LGPL-2.1-or-later
-
-Summary: Decomposed printf argument list
-
 About libgettextpo
 ------------------
 
@@ -49,14 +31,14 @@ Package license: GPL-3.0-or-later
 
 Summary: library for interfacing programmatically with GNU gettext .po files
 
-About libintl-devel
--------------------
+About libasprintf-devel
+-----------------------
 
 Home: https://www.gnu.org/software/gettext/
 
 Package license: LGPL-2.1-or-later
 
-Summary: library that provides native language support to programs
+Summary: Decomposed printf argument list
 
 About libgettextpo-devel
 ------------------------
@@ -76,11 +58,36 @@ Package license: GPL-3.0-or-later
 
 Summary: Internationalization package
 
+About libintl
+-------------
+
+Home: https://www.gnu.org/software/gettext/
+
+Package license: LGPL-2.1-or-later
+
+Summary: library that provides native language support to programs
+
+About libintl-devel
+-------------------
+
+Home: https://www.gnu.org/software/gettext/
+
+Package license: LGPL-2.1-or-later
+
+Summary: library that provides native language support to programs
+
 Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>Travis</td>
+    <td>
+      <a href="https://app.travis-ci.com/conda-forge/gettext-feedstock">
+        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/gettext-feedstock/main.svg?label=Linux">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
@@ -94,6 +101,34 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
+              <td>linux_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>osx_arm64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
