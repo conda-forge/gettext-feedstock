@@ -9,7 +9,8 @@ pushd ${PREFIX}/lib
 if [[ "${target_platform}" == osx-* ]]; then
   ln -s libasprintf.*.dylib libasprintf.dylib
 else
-  ln -s libasprintf.so.* libasprintf.so
+  test -f libasprintf.so.0
+  ln -s libasprintf.so.0 libasprintf.so
 fi
 popd
 

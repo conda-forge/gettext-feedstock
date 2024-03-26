@@ -9,7 +9,8 @@ pushd ${PREFIX}/lib
 if [[ "${target_platform}" == osx-* ]]; then
   ln -s libgettextpo.*.dylib libgettextpo.dylib
 else
-  ln -s libgettextpo.so.* libgettextpo.so
+  test -f libgettextpo.so.0
+  ln -s libgettextpo.so.0 libgettextpo.so
 fi
 popd
 
