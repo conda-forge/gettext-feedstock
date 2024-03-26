@@ -323,6 +323,11 @@ outputs:
 
   - name: gettext
     build:
+      # Required to make overdepending checks pass.
+      ignore_run_exports:
+        - libintl
+        - libasprintf
+        - libgettextpo
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libintl') }}  # [not linux]
