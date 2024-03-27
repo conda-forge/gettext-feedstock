@@ -80,14 +80,7 @@ Current build status
 ====================
 
 
-<table><tr>
-    <td>Travis</td>
-    <td>
-      <a href="https://app.travis-ci.com/conda-forge/gettext-feedstock">
-        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/gettext-feedstock/main.svg?label=Linux">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
@@ -167,14 +160,14 @@ Current release info
 Installing gettext
 ==================
 
-Installing `gettext` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `gettext` from the `conda-forge/label/gettext_dev` channel can be achieved by adding `conda-forge/label/gettext_dev` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/gettext_dev
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `gettext, gettext-bin, libasprintf, libasprintf-devel, libgettextpo, libgettextpo-devel, libintl, libintl-devel` can be installed with `conda`:
+Once the `conda-forge/label/gettext_dev` channel has been enabled, `gettext, gettext-bin, libasprintf, libasprintf-devel, libgettextpo, libgettextpo-devel, libintl, libintl-devel` can be installed with `conda`:
 
 ```
 conda install gettext gettext-bin libasprintf libasprintf-devel libgettextpo libgettextpo-devel libintl libintl-devel
@@ -189,26 +182,26 @@ mamba install gettext gettext-bin libasprintf libasprintf-devel libgettextpo lib
 It is possible to list all of the versions of `gettext` available on your platform with `conda`:
 
 ```
-conda search gettext --channel conda-forge
+conda search gettext --channel conda-forge/label/gettext_dev
 ```
 
 or with `mamba`:
 
 ```
-mamba search gettext --channel conda-forge
+mamba search gettext --channel conda-forge/label/gettext_dev
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search gettext --channel conda-forge
+mamba repoquery search gettext --channel conda-forge/label/gettext_dev
 
 # List packages depending on `gettext`:
-mamba repoquery whoneeds gettext --channel conda-forge
+mamba repoquery whoneeds gettext --channel conda-forge/label/gettext_dev
 
 # List dependencies of `gettext`:
-mamba repoquery depends gettext --channel conda-forge
+mamba repoquery depends gettext --channel conda-forge/label/gettext_dev
 ```
 
 
