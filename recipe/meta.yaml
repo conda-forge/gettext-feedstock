@@ -350,7 +350,7 @@ outputs:
         - make                               # [unix]
       host:
         - libiconv  # [not linux]
-        - {{ pin_subpackage('gettext-bin', exact=True) }}  # [not linux]
+        - {{ pin_subpackage('gettext-bin', exact=True) }}
         - {{ pin_subpackage('libintl-devel', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libasprintf-devel', exact=True ) }}
@@ -358,7 +358,7 @@ outputs:
         - {{ pin_subpackage('libgettextpo-devel', exact=True ) }}
         - {{ pin_subpackage('libgettextpo', exact=True ) }}
       run:
-        - {{ pin_subpackage('gettext-bin', exact=True) }}  # [not linux]
+        - {{ pin_subpackage('gettext-bin', exact=True) }}
         - {{ pin_subpackage('libintl-devel', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libasprintf-devel', exact=True ) }}
