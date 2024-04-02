@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -exuo pipefail
 
 if [[ "$target_platform" == win* ]] ; then
     export PREFIX="$LIBRARY_PREFIX_U"
@@ -20,10 +20,10 @@ if [[ "$target_platform" == win* ]] ; then
     # "ar-lib".
 
     export AR="$RECIPE_DIR/ar-lib lib"
-    export CC="$RECIPE_DIR/compile cl -nologo"
-    export CPP="cl -nologo -E"
-    export CXX="$RECIPE_DIR/compile cl -nologo"
-    export CXXCPP="cl -nologo -E"
+    export CC="$RECIPE_DIR/compile cl.exe -nologo"
+    export CPP="cl.exe -nologo -E"
+    export CXX="$RECIPE_DIR/compile cl.exe -nologo"
+    export CXXCPP="cl.exe -nologo -E"
     export LD="link"
     export NM="dumpbin -symbols"
     export RANLIB=":"
@@ -42,7 +42,7 @@ if [[ "$target_platform" == win* ]] ; then
     # have any needed Windows OS libraries specified anywhere, but it doesn't,
     # so we add them here too.
 
-    export LDFLAGS="$LDFLAGS -L/mingw-w64/x86_64-w64-mingw32/lib -L$PREFIX/lib"
+    export LDFLAGS="${LDFLAGS:-} -L/mingw-w64/x86_64-w64-mingw32/lib -L$PREFIX/lib"
 
     # We need the -MD flag ("link with MSVCRT.lib"); otherwise our executables
     # can crash with error -1073740791 = 0xC0000409 = STATUS_STACK_BUFFER_OVERRUN
@@ -50,8 +50,8 @@ if [[ "$target_platform" == win* ]] ; then
     # But -GL messes up Libtool's identification of how the linker works;
     # it parses dumpbin output and: https://stackoverflow.com/a/11850034/3760486
 
-    export CFLAGS=$(echo "-MD $CFLAGS " |sed -e "s, [-/]GL ,,")
-    export CXXFLAGS=$(echo "-MD $CXXFLAGS " |sed -e "s, [-/]GL ,,")
+    export CFLAGS=$(echo "-MD ${CFLAGS:-} " |sed -e "s, [-/]GL ,,")
+    export CXXFLAGS=$(echo "-MD ${CXXFLAGS:-} " |sed -e "s, [-/]GL ,,")
 
     autoreconf -vfi
 else
@@ -64,18 +64,15 @@ fi
   --prefix=$PREFIX \
   --build=$BUILD \
   --host=$HOST \
+  --disable-static \
   --disable-csharp \
   --disable-dependency-tracking \
   --disable-java \
   --disable-native-java \
   --disable-openmp \
   --enable-fast-install \
-  --without-emacs
+  --without-emacs || (cat config.log; cat gettext-runtime/config.log; exit 1)
 
-make -j${CPU_COUNT} ${VERBOSE_AT}
-make install
+make -j${CPU_COUNT}
 
-# This overlaps with readline:
-rm -rf ${PREFIX}/share/info/dir
-
-find $PREFIX -name '*.la' -delete
+find . -name '*.dll'

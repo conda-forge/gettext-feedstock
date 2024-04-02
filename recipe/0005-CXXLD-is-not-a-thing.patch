@@ -1,7 +1,7 @@
-From 2d10c68efa0065f3c3b8ab59c1908baa43df2934 Mon Sep 17 00:00:00 2001
+From 8538d082c870ef99bccb8c48acc0c40e525c07cb Mon Sep 17 00:00:00 2001
 From: Peter Williams <peter@newton.cx>
 Date: Mon, 3 Sep 2018 17:37:12 -0400
-Subject: [PATCH 5/9] CXXLD is not a thing.
+Subject: [PATCH 5/8] CXXLD is not a thing.
 
 Maybe it was at some point? But it isn't now. CCLD works fine on Windows since
 CC and CXX (the C and C++ compilers) are the same thing.
@@ -11,10 +11,10 @@ CC and CXX (the C and C++ compilers) are the same thing.
  2 files changed, 12 insertions(+), 12 deletions(-)
 
 diff --git a/gettext-tools/gnulib-lib/Makefile.am b/gettext-tools/gnulib-lib/Makefile.am
-index e2a935d..889c0c9 100644
+index ab729cd..e74f9f2 100644
 --- a/gettext-tools/gnulib-lib/Makefile.am
 +++ b/gettext-tools/gnulib-lib/Makefile.am
-@@ -78,7 +78,7 @@ libgettextlib_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+@@ -81,7 +81,7 @@ libgettextlib_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
  else
  libgettextlib_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
  	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
@@ -24,10 +24,10 @@ index e2a935d..889c0c9 100644
  # Use the same definition of CXXLD as Automake generates in other Makefiles.
  CXXLD = $(CXX)
 diff --git a/gettext-tools/src/Makefile.am b/gettext-tools/src/Makefile.am
-index 0f2453a..f6dd16a 100644
+index 0f77ee8..2a8c9d8 100644
 --- a/gettext-tools/src/Makefile.am
 +++ b/gettext-tools/src/Makefile.am
-@@ -480,47 +480,47 @@ xgettext_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+@@ -493,47 +493,47 @@ xgettext_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
  else
  libgettextsrc_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
  	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \

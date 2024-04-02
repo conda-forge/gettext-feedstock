@@ -1,26 +1,86 @@
+About gettext-feedstock
+=======================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gettext-feedstock/blob/main/LICENSE.txt)
+
+
 About gettext
-=============
+-------------
 
 Home: https://www.gnu.org/software/gettext/
 
 Package license: LGPL-2.1-or-later AND GPL-3.0-or-later
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gettext-feedstock/blob/main/LICENSE.txt)
-
 Summary: Internationalization package
+
+About libasprintf
+-----------------
+
+Home: https://www.gnu.org/software/gettext/
+
+Package license: LGPL-2.1-or-later
+
+Summary: C-style formatted output in C++
+
+About libgettextpo
+------------------
+
+Home: https://www.gnu.org/software/gettext/
+
+Package license: GPL-3.0-or-later
+
+Summary: library for interfacing programmatically with GNU gettext .po files
+
+About libasprintf-devel
+-----------------------
+
+Home: https://www.gnu.org/software/gettext/
+
+Package license: LGPL-2.1-or-later
+
+Summary: Decomposed printf argument list
+
+About libgettextpo-devel
+------------------------
+
+Home: https://www.gnu.org/software/gettext/
+
+Package license: GPL-3.0-or-later
+
+Summary: library for interfacing programmatically with GNU gettext .po files
+
+About gettext-tools
+-------------------
+
+Home: https://www.gnu.org/software/gettext/
+
+Package license: GPL-3.0-or-later
+
+Summary: Internationalization package (executable tools)
+
+About libintl
+-------------
+
+Home: https://www.gnu.org/software/gettext/
+
+Package license: LGPL-2.1-or-later
+
+Summary: library that provides native language support to programs
+
+About libintl-devel
+-------------------
+
+Home: https://www.gnu.org/software/gettext/
+
+Package license: LGPL-2.1-or-later
+
+Summary: library that provides native language support to programs
 
 Current build status
 ====================
 
 
-<table><tr>
-    <td>Travis</td>
-    <td>
-      <a href="https://app.travis-ci.com/conda-forge/gettext-feedstock">
-        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/gettext-feedstock/main.svg?label=Linux">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
@@ -37,42 +97,42 @@ Current build status
               <td>linux_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=linux&configuration=linux_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>linux_aarch64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=linux&configuration=linux_aarch64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>linux_ppc64le</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=linux&configuration=linux_ppc64le_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=osx&configuration=osx_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_arm64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=osx&configuration=osx_arm64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>win_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=356&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=win&configuration=win_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gettext-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -89,52 +149,59 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gettext-green.svg)](https://anaconda.org/conda-forge/gettext) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gettext.svg)](https://anaconda.org/conda-forge/gettext) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gettext.svg)](https://anaconda.org/conda-forge/gettext) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gettext.svg)](https://anaconda.org/conda-forge/gettext) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gettext--tools-green.svg)](https://anaconda.org/conda-forge/gettext-tools) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gettext-tools.svg)](https://anaconda.org/conda-forge/gettext-tools) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gettext-tools.svg)](https://anaconda.org/conda-forge/gettext-tools) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gettext-tools.svg)](https://anaconda.org/conda-forge/gettext-tools) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libasprintf-green.svg)](https://anaconda.org/conda-forge/libasprintf) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libasprintf.svg)](https://anaconda.org/conda-forge/libasprintf) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libasprintf.svg)](https://anaconda.org/conda-forge/libasprintf) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libasprintf.svg)](https://anaconda.org/conda-forge/libasprintf) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libasprintf--devel-green.svg)](https://anaconda.org/conda-forge/libasprintf-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libasprintf-devel.svg)](https://anaconda.org/conda-forge/libasprintf-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libasprintf-devel.svg)](https://anaconda.org/conda-forge/libasprintf-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libasprintf-devel.svg)](https://anaconda.org/conda-forge/libasprintf-devel) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libgettextpo-green.svg)](https://anaconda.org/conda-forge/libgettextpo) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgettextpo.svg)](https://anaconda.org/conda-forge/libgettextpo) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgettextpo.svg)](https://anaconda.org/conda-forge/libgettextpo) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgettextpo.svg)](https://anaconda.org/conda-forge/libgettextpo) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libgettextpo--devel-green.svg)](https://anaconda.org/conda-forge/libgettextpo-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgettextpo-devel.svg)](https://anaconda.org/conda-forge/libgettextpo-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgettextpo-devel.svg)](https://anaconda.org/conda-forge/libgettextpo-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgettextpo-devel.svg)](https://anaconda.org/conda-forge/libgettextpo-devel) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libintl-green.svg)](https://anaconda.org/conda-forge/libintl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libintl.svg)](https://anaconda.org/conda-forge/libintl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libintl.svg)](https://anaconda.org/conda-forge/libintl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libintl.svg)](https://anaconda.org/conda-forge/libintl) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libintl--devel-green.svg)](https://anaconda.org/conda-forge/libintl-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libintl-devel.svg)](https://anaconda.org/conda-forge/libintl-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libintl-devel.svg)](https://anaconda.org/conda-forge/libintl-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libintl-devel.svg)](https://anaconda.org/conda-forge/libintl-devel) |
 
 Installing gettext
 ==================
 
-Installing `gettext` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `gettext` from the `conda-forge/label/gettext_dev` channel can be achieved by adding `conda-forge/label/gettext_dev` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/gettext_dev
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `gettext` can be installed with `conda`:
+Once the `conda-forge/label/gettext_dev` channel has been enabled, `gettext, gettext-tools, libasprintf, libasprintf-devel, libgettextpo, libgettextpo-devel, libintl, libintl-devel` can be installed with `conda`:
 
 ```
-conda install gettext
+conda install gettext gettext-tools libasprintf libasprintf-devel libgettextpo libgettextpo-devel libintl libintl-devel
 ```
 
 or with `mamba`:
 
 ```
-mamba install gettext
+mamba install gettext gettext-tools libasprintf libasprintf-devel libgettextpo libgettextpo-devel libintl libintl-devel
 ```
 
 It is possible to list all of the versions of `gettext` available on your platform with `conda`:
 
 ```
-conda search gettext --channel conda-forge
+conda search gettext --channel conda-forge/label/gettext_dev
 ```
 
 or with `mamba`:
 
 ```
-mamba search gettext --channel conda-forge
+mamba search gettext --channel conda-forge/label/gettext_dev
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search gettext --channel conda-forge
+mamba repoquery search gettext --channel conda-forge/label/gettext_dev
 
 # List packages depending on `gettext`:
-mamba repoquery whoneeds gettext --channel conda-forge
+mamba repoquery whoneeds gettext --channel conda-forge/label/gettext_dev
 
 # List dependencies of `gettext`:
-mamba repoquery depends gettext --channel conda-forge
+mamba repoquery depends gettext --channel conda-forge/label/gettext_dev
 ```
 
 
@@ -156,7 +223,7 @@ available continuous integration services. Thanks to the awesome service provide
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
 [Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
 it is possible to build and upload installable packages to the
-[conda-forge](https://anaconda.org/conda-forge) [Anaconda-Cloud](https://anaconda.org/)
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
 To manage the continuous integration and simplify feedstock maintenance
@@ -205,5 +272,7 @@ Feedstock Maintainers
 =====================
 
 * [@ocefpaf](https://github.com/ocefpaf/)
+* [@pkgw](https://github.com/pkgw/)
 * [@scopatz](https://github.com/scopatz/)
+* [@xhochy](https://github.com/xhochy/)
 
