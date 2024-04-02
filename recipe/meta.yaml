@@ -72,7 +72,7 @@ outputs:
         - libiconv  # [not linux]
     test:
       commands:
-        # Only the actual binary (versioned) version should be in this package
+        # Only the actual binary (versioned) variant should be in this package
         - test -f ${PREFIX}/lib/libintl.*.dylib                   # [osx]
         - test -f ${PREFIX}/lib/libintl.so.*                      # [linux]
         - if not exist %PREFIX%\Library\bin\intl-*.dll exit /b 1  # [win]
@@ -149,7 +149,7 @@ outputs:
         - libiconv  # [not linux]
     test:
       commands:
-        # Only the actual binary (versioned) version should be in this package
+        # Only the actual binary (versioned) variant should be in this package
         - test -f ${PREFIX}/lib/libasprintf.*.dylib                   # [osx]
         - test -f ${PREFIX}/lib/libasprintf.so.0                      # [linux]
         - if not exist %PREFIX%\Library\bin\asprintf-*.dll exit /b 1  # [win]
@@ -229,7 +229,7 @@ outputs:
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
     test:
       commands:
-        # Only the actual binary (versioned) version should be in this package
+        # Only the actual binary (versioned) variant should be in this package
         - test -f ${PREFIX}/lib/libgettextpo.*.dylib                   # [osx]
         - test -f ${PREFIX}/lib/libgettextpo.so.0                      # [linux]
         - if not exist %PREFIX%\Library\bin\gettextpo-*.dll exit /b 1  # [win]
