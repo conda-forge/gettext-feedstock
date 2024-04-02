@@ -20,7 +20,7 @@ Home: https://www.gnu.org/software/gettext/
 
 Package license: LGPL-2.1-or-later
 
-Summary: Decomposed printf argument list
+Summary: C-style formatted output in C++
 
 About libgettextpo
 ------------------
@@ -49,14 +49,14 @@ Package license: GPL-3.0-or-later
 
 Summary: library for interfacing programmatically with GNU gettext .po files
 
-About gettext-bin
------------------
+About gettext-tools
+-------------------
 
 Home: https://www.gnu.org/software/gettext/
 
 Package license: GPL-3.0-or-later
 
-Summary: Internationalization package
+Summary: Internationalization package (executable tools)
 
 About libintl
 -------------
@@ -149,7 +149,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gettext-green.svg)](https://anaconda.org/conda-forge/gettext) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gettext.svg)](https://anaconda.org/conda-forge/gettext) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gettext.svg)](https://anaconda.org/conda-forge/gettext) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gettext.svg)](https://anaconda.org/conda-forge/gettext) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-gettext--bin-green.svg)](https://anaconda.org/conda-forge/gettext-bin) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gettext-bin.svg)](https://anaconda.org/conda-forge/gettext-bin) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gettext-bin.svg)](https://anaconda.org/conda-forge/gettext-bin) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gettext-bin.svg)](https://anaconda.org/conda-forge/gettext-bin) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gettext--tools-green.svg)](https://anaconda.org/conda-forge/gettext-tools) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gettext-tools.svg)](https://anaconda.org/conda-forge/gettext-tools) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gettext-tools.svg)](https://anaconda.org/conda-forge/gettext-tools) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gettext-tools.svg)](https://anaconda.org/conda-forge/gettext-tools) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libasprintf-green.svg)](https://anaconda.org/conda-forge/libasprintf) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libasprintf.svg)](https://anaconda.org/conda-forge/libasprintf) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libasprintf.svg)](https://anaconda.org/conda-forge/libasprintf) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libasprintf.svg)](https://anaconda.org/conda-forge/libasprintf) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libasprintf--devel-green.svg)](https://anaconda.org/conda-forge/libasprintf-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libasprintf-devel.svg)](https://anaconda.org/conda-forge/libasprintf-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libasprintf-devel.svg)](https://anaconda.org/conda-forge/libasprintf-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libasprintf-devel.svg)](https://anaconda.org/conda-forge/libasprintf-devel) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgettextpo-green.svg)](https://anaconda.org/conda-forge/libgettextpo) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgettextpo.svg)](https://anaconda.org/conda-forge/libgettextpo) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgettextpo.svg)](https://anaconda.org/conda-forge/libgettextpo) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgettextpo.svg)](https://anaconda.org/conda-forge/libgettextpo) |
@@ -167,16 +167,16 @@ conda config --add channels conda-forge/label/gettext_dev
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge/label/gettext_dev` channel has been enabled, `gettext, gettext-bin, libasprintf, libasprintf-devel, libgettextpo, libgettextpo-devel, libintl, libintl-devel` can be installed with `conda`:
+Once the `conda-forge/label/gettext_dev` channel has been enabled, `gettext, gettext-tools, libasprintf, libasprintf-devel, libgettextpo, libgettextpo-devel, libintl, libintl-devel` can be installed with `conda`:
 
 ```
-conda install gettext gettext-bin libasprintf libasprintf-devel libgettextpo libgettextpo-devel libintl libintl-devel
+conda install gettext gettext-tools libasprintf libasprintf-devel libgettextpo libgettextpo-devel libintl libintl-devel
 ```
 
 or with `mamba`:
 
 ```
-mamba install gettext gettext-bin libasprintf libasprintf-devel libgettextpo libgettextpo-devel libintl libintl-devel
+mamba install gettext gettext-tools libasprintf libasprintf-devel libgettextpo libgettextpo-devel libintl libintl-devel
 ```
 
 It is possible to list all of the versions of `gettext` available on your platform with `conda`:
