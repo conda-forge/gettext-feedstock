@@ -162,7 +162,7 @@ outputs:
       home: https://www.gnu.org/software/gettext/
       license: LGPL-2.1-or-later
       license_file: COPYING
-      summary: Decomposed printf argument list
+      summary: C-style formatted output in C++
   - name: libasprintf-devel
     build:
       run_exports:
@@ -322,7 +322,7 @@ outputs:
       # The binaries of gettext are the GPL-3.0 licensed part.
       license: GPL-3.0-or-later
       license_file: COPYING
-      summary: Internationalization package
+      summary: Internationalization package (executable tools)
 
   - name: gettext
     build:
