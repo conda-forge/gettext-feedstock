@@ -79,6 +79,7 @@ outputs:
         # The unversioned variants as well as the lib on Windows should be in the main gettext package.
         - test ! -f ${PREFIX}/lib/libintl$SHLIB_EXT               # [not win]
         - if exist %PREFIX%\Library\lib\intl.dll.lib exit /b 1    # [win]
+        - if exist %PREFIX%\Library\lib\intl.lib exit /b 1    # [win]
     about:
       home: https://www.gnu.org/software/gettext/
       license: LGPL-2.1-or-later
@@ -196,6 +197,7 @@ outputs:
       commands:
         - test -f ${PREFIX}/lib/libasprintf${SHLIB_EXT}               # [not win]
         - if not exist %PREFIX%\Library\lib\asprintf.dll.lib exit /b 1    # [win]
+        - if not exist %PREFIX%\Library\lib\asprintf.lib exit /b 1    # [win]
     about:
       home: https://www.gnu.org/software/gettext/
       license: LGPL-2.1-or-later
@@ -278,6 +280,7 @@ outputs:
       commands:
         - test -f ${PREFIX}/lib/libgettextpo$SHLIB_EXT               # [not win]
         - if not exist %PREFIX%\Library\lib\gettextpo.dll.lib exit /b 1    # [win]
+        - if not exist %PREFIX%\Library\lib\gettextpo.lib exit /b 1    # [win]
     about:
       home: https://www.gnu.org/software/gettext/
       license: GPL-3.0-or-later
