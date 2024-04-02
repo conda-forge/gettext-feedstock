@@ -9,6 +9,8 @@ pushd ${PREFIX}/lib
 if [[ "${target_platform}" == osx-* ]]; then
   ln -s libintl.*.dylib libintl.dylib
 else
-  ln -s libintl.so.* libintl.so
+  echo "This shouldn't be built on Linux"
+  exit 1
+  # ln -s libintl.so.0 libintl.so
 fi
 popd
