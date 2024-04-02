@@ -283,7 +283,7 @@ outputs:
       license: GPL-3.0-or-later
       license_file: COPYING
       summary: library for interfacing programmatically with GNU gettext .po files
-  - name: gettext-bin
+  - name: gettext-tools
     script: install-gettext.sh  # [unix]
     script: install-gettext.bat  # [not unix]
     requirements:
@@ -353,7 +353,7 @@ outputs:
         - make                               # [unix]
       host:
         - libiconv  # [not linux]
-        - {{ pin_subpackage('gettext-bin', exact=True) }}
+        - {{ pin_subpackage('gettext-tools', exact=True) }}
         - {{ pin_subpackage('libintl-devel', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libasprintf-devel', exact=True ) }}
@@ -361,7 +361,7 @@ outputs:
         - {{ pin_subpackage('libgettextpo-devel', exact=True ) }}
         - {{ pin_subpackage('libgettextpo', exact=True ) }}
       run:
-        - {{ pin_subpackage('gettext-bin', exact=True) }}
+        - {{ pin_subpackage('gettext-tools', exact=True) }}
         - {{ pin_subpackage('libintl-devel', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libasprintf-devel', exact=True ) }}
