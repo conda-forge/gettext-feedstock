@@ -21,7 +21,7 @@ source:
     - 0008-Avoid-close-inconsistencies.patch                           # [win]
 
 build:
-  number: 0
+  number: 1
   ignore_run_exports:
     - libcxx
     - libstdcxx-ng
@@ -78,8 +78,10 @@ outputs:
         - if not exist %PREFIX%\Library\bin\intl-*.dll exit /b 1  # [win]
         # The unversioned variants as well as the lib on Windows should be in the main gettext package.
         - test ! -f ${PREFIX}/lib/libintl$SHLIB_EXT               # [not win]
+        - test ! -f ${PREFIX}/include/libintl.h                   # [osx]
         - if exist %PREFIX%\Library\lib\intl.dll.lib exit /b 1    # [win]
-        - if exist %PREFIX%\Library\lib\intl.lib exit /b 1    # [win]
+        - if exist %PREFIX%\Library\lib\intl.lib exit /b 1        # [win]
+        - if exist %PREFIX%\Library\include\libintl.h exit /b1    # [win]
     about:
       home: https://www.gnu.org/software/gettext/
       license: LGPL-2.1-or-later
@@ -117,8 +119,10 @@ outputs:
     test:
       commands:
         - test -f ${PREFIX}/lib/libintl${SHLIB_EXT}                   # [osx]
+        - test -f ${PREFIX}/include/libintl.h                         # [osx]
         - if not exist %PREFIX%\Library\lib\intl.dll.lib exit /b 1    # [win]
-        - if not exist %PREFIX%\Library\lib\intl.lib exit /b 1    # [win]
+        - if not exist %PREFIX%\Library\lib\intl.lib exit /b 1        # [win]
+        - if not exist %PREFIX%\Library\include\libintl.h exit /b1    # [win]
     about:
       home: https://www.gnu.org/software/gettext/
       license: LGPL-2.1-or-later
