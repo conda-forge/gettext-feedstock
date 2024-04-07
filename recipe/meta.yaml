@@ -21,7 +21,7 @@ source:
     - 0008-Avoid-close-inconsistencies.patch                           # [win]
 
 build:
-  number: 1
+  number: 2
   ignore_run_exports:
     - libcxx
     - libstdcxx-ng
