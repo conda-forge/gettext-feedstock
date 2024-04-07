@@ -160,14 +160,14 @@ Current release info
 Installing gettext
 ==================
 
-Installing `gettext` from the `conda-forge/label/gettext_dev` channel can be achieved by adding `conda-forge/label/gettext_dev` to your channels with:
+Installing `gettext` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
-conda config --add channels conda-forge/label/gettext_dev
+conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge/label/gettext_dev` channel has been enabled, `gettext, gettext-tools, libasprintf, libasprintf-devel, libgettextpo, libgettextpo-devel, libintl, libintl-devel` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `gettext, gettext-tools, libasprintf, libasprintf-devel, libgettextpo, libgettextpo-devel, libintl, libintl-devel` can be installed with `conda`:
 
 ```
 conda install gettext gettext-tools libasprintf libasprintf-devel libgettextpo libgettextpo-devel libintl libintl-devel
@@ -182,26 +182,26 @@ mamba install gettext gettext-tools libasprintf libasprintf-devel libgettextpo l
 It is possible to list all of the versions of `gettext` available on your platform with `conda`:
 
 ```
-conda search gettext --channel conda-forge/label/gettext_dev
+conda search gettext --channel conda-forge
 ```
 
 or with `mamba`:
 
 ```
-mamba search gettext --channel conda-forge/label/gettext_dev
+mamba search gettext --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search gettext --channel conda-forge/label/gettext_dev
+mamba repoquery search gettext --channel conda-forge
 
 # List packages depending on `gettext`:
-mamba repoquery whoneeds gettext --channel conda-forge/label/gettext_dev
+mamba repoquery whoneeds gettext --channel conda-forge
 
 # List dependencies of `gettext`:
-mamba repoquery depends gettext --channel conda-forge/label/gettext_dev
+mamba repoquery depends gettext --channel conda-forge
 ```
 
 
