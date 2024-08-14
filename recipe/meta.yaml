@@ -22,9 +22,6 @@ source:
 
 build:
   number: 3
-  ignore_run_exports:
-    - libcxx
-    - libstdcxx-ng
 
 requirements:
   build:
@@ -51,10 +48,9 @@ outputs:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libintl') }}
-      ignore_run_exports:
-        - libcxx
-        - libstdcxx-ng
-    script: install-libintl.sh  # [unix]
+      ignore_run_exports_from:
+        - {{ compiler('cxx') }}  # [unix]
+    script: install-libintl.sh   # [unix]
     script: install-libintl.bat  # [not unix]
     requirements:
       build:
@@ -96,9 +92,8 @@ outputs:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libintl') }}
-      ignore_run_exports:
-        - libcxx
-        - libstdcxx-ng
+      ignore_run_exports_from:
+        - {{ compiler('cxx') }}  # [unix]
     script: install-libintl-devel.sh  # [unix]
     script: install-libintl-devel.bat  # [not unix]
     requirements:
@@ -138,8 +133,9 @@ outputs:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libasprintf') }}
+      ignore_run_exports_from:
+        - {{ compiler('cxx') }}  # [osx]
       ignore_run_exports:
-        - libcxx
         - libiconv
     script: install-asprintf.sh  # [unix]
     script: install-asprintf.bat  # [not unix]
@@ -180,9 +176,9 @@ outputs:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libasprintf') }}
+      ignore_run_exports_from:
+        - {{ compiler('cxx') }}  # [unix]
       ignore_run_exports:
-        - libcxx
-        - libstdcxx-ng
         - libiconv
     script: install-asprintf-devel.sh  # [unix]
     script: install-asprintf-devel.bat  # [not unix]
@@ -221,9 +217,8 @@ outputs:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libgettextpo') }}
-      ignore_run_exports:
-        - libcxx
-        - libstdcxx-ng
+      ignore_run_exports_from:
+        - {{ compiler('cxx') }}  # [unix]
     script: install-libgettextpo.sh  # [unix]
     script: install-libgettextpo.bat  # [not unix]
     requirements:
@@ -266,9 +261,8 @@ outputs:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libgettextpo') }}
-      ignore_run_exports:
-        - libcxx
-        - libstdcxx-ng
+      ignore_run_exports_from:
+        - {{ compiler('cxx') }}  # [unix]
     script: install-libgettextpo-devel.sh  # [unix]
     script: install-libgettextpo-devel.bat  # [not unix]
     requirements:
