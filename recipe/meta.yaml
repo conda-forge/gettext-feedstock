@@ -21,10 +21,7 @@ source:
     - 0008-Avoid-close-inconsistencies.patch                           # [win]
 
 build:
-  number: 2
-  ignore_run_exports:
-    - libcxx
-    - libstdcxx-ng
+  number: 3
 
 requirements:
   build:
@@ -36,6 +33,7 @@ requirements:
     - {{ posix }}sed                       # [win]
     - {{ native }}binutils                 # [win]
     - {{ native }}crt-git                  # [win]
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - make                               # [unix]
@@ -50,10 +48,9 @@ outputs:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libintl') }}
-      ignore_run_exports:
-        - libcxx
-        - libstdcxx-ng
-    script: install-libintl.sh  # [unix]
+      ignore_run_exports_from:
+        - {{ compiler('cxx') }}  # [unix]
+    script: install-libintl.sh   # [unix]
     script: install-libintl.bat  # [not unix]
     requirements:
       build:
@@ -65,6 +62,7 @@ outputs:
         - {{ posix }}sed                       # [win]
         - {{ native }}binutils                 # [win]
         - {{ native }}crt-git                  # [win]
+        - {{ stdlib('c') }}                  # [not win]
         - {{ compiler('c') }}                # [not win]
         - {{ compiler('cxx') }}              # [not win]
         - make                               # [unix]
@@ -87,15 +85,15 @@ outputs:
       license: LGPL-2.1-or-later
       license_file: COPYING
       summary: library that provides native language support to programs
+
   - name: libintl-devel
     build:
       skip: true  # [linux]
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libintl') }}
-      ignore_run_exports:
-        - libcxx
-        - libstdcxx-ng
+      ignore_run_exports_from:
+        - {{ compiler('cxx') }}  # [unix]
     script: install-libintl-devel.sh  # [unix]
     script: install-libintl-devel.bat  # [not unix]
     requirements:
@@ -108,6 +106,7 @@ outputs:
         - {{ posix }}sed                       # [win]
         - {{ native }}binutils                 # [win]
         - {{ native }}crt-git                  # [win]
+        - {{ stdlib('c') }}                  # [not win]
         - {{ compiler('c') }}                # [not win]
         - {{ compiler('cxx') }}              # [not win]
         - make                               # [unix]
@@ -128,13 +127,13 @@ outputs:
       license: LGPL-2.1-or-later
       license_file: COPYING
       summary: library that provides native language support to programs
+
   - name: libasprintf
     build:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libasprintf') }}
       ignore_run_exports:
-        - libcxx
         - libiconv
     script: install-asprintf.sh  # [unix]
     script: install-asprintf.bat  # [not unix]
@@ -148,6 +147,7 @@ outputs:
         - {{ posix }}sed                       # [win]
         - {{ native }}binutils                 # [win]
         - {{ native }}crt-git                  # [win]
+        - {{ stdlib('c') }}                  # [not win]
         - {{ compiler('c') }}                # [not win]
         - {{ compiler('cxx') }}              # [not win]
         - make                               # [unix]
@@ -168,14 +168,15 @@ outputs:
       license: LGPL-2.1-or-later
       license_file: COPYING
       summary: C-style formatted output in C++
+
   - name: libasprintf-devel
     build:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libasprintf') }}
+      ignore_run_exports_from:
+        - {{ compiler('cxx') }}  # [unix]
       ignore_run_exports:
-        - libcxx
-        - libstdcxx-ng
         - libiconv
     script: install-asprintf-devel.sh  # [unix]
     script: install-asprintf-devel.bat  # [not unix]
@@ -189,6 +190,7 @@ outputs:
         - {{ posix }}sed                       # [win]
         - {{ native }}binutils                 # [win]
         - {{ native }}crt-git                  # [win]
+        - {{ stdlib('c') }}                  # [not win]
         - {{ compiler('c') }}                # [not win]
         - {{ compiler('cxx') }}              # [not win]
         - make                               # [unix]
@@ -207,14 +209,14 @@ outputs:
       license: LGPL-2.1-or-later
       license_file: COPYING
       summary: Decomposed printf argument list
+
   - name: libgettextpo
     build:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libgettextpo') }}
-      ignore_run_exports:
-        - libcxx
-        - libstdcxx-ng
+      ignore_run_exports_from:
+        - {{ compiler('cxx') }}  # [unix]
     script: install-libgettextpo.sh  # [unix]
     script: install-libgettextpo.bat  # [not unix]
     requirements:
@@ -227,6 +229,7 @@ outputs:
         - {{ posix }}sed                       # [win]
         - {{ native }}binutils                 # [win]
         - {{ native }}crt-git                  # [win]
+        - {{ stdlib('c') }}                  # [not win]
         - {{ compiler('c') }}                # [not win]
         - {{ compiler('cxx') }}              # [not win]
         - make                               # [unix]
@@ -250,14 +253,14 @@ outputs:
       license: GPL-3.0-or-later
       license_file: COPYING
       summary: library for interfacing programmatically with GNU gettext .po files
+
   - name: libgettextpo-devel
     build:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libgettextpo') }}
-      ignore_run_exports:
-        - libcxx
-        - libstdcxx-ng
+      ignore_run_exports_from:
+        - {{ compiler('cxx') }}  # [unix]
     script: install-libgettextpo-devel.sh  # [unix]
     script: install-libgettextpo-devel.bat  # [not unix]
     requirements:
@@ -270,6 +273,7 @@ outputs:
         - {{ posix }}sed                       # [win]
         - {{ native }}binutils                 # [win]
         - {{ native }}crt-git                  # [win]
+        - {{ stdlib('c') }}                  # [not win]
         - {{ compiler('c') }}                # [not win]
         - {{ compiler('cxx') }}              # [not win]
         - make                               # [unix]
@@ -290,9 +294,13 @@ outputs:
       license: GPL-3.0-or-later
       license_file: COPYING
       summary: library for interfacing programmatically with GNU gettext .po files
+
   - name: gettext-tools
     script: install-gettext.sh  # [unix]
     script: install-gettext.bat  # [not unix]
+    build:
+      ignore_run_exports_from:
+        - {{ compiler('cxx') }}
     requirements:
       build:
         - posix                              # [win]
@@ -303,6 +311,7 @@ outputs:
         - {{ posix }}sed                       # [win]
         - {{ native }}binutils                 # [win]
         - {{ native }}crt-git                  # [win]
+        - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - make                               # [unix]
@@ -355,6 +364,7 @@ outputs:
         - {{ posix }}sed                       # [win]
         - {{ native }}binutils                 # [win]
         - {{ native }}crt-git                  # [win]
+        - {{ stdlib('c') }}                  # [not win]
         - {{ compiler('c') }}                # [not win]
         - {{ compiler('cxx') }}              # [not win]
         - make                               # [unix]
