@@ -1,7 +1,5 @@
 {% set version = "0.23.1" %}
-{% set am_version = "1.15" %} #  keep synchronized with build.sh
-{% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
+{% set am_version = "1.16" %} #  keep synchronized with build.sh
 
 package:
   name: gettext-split
@@ -24,21 +22,24 @@ build:
 
 requirements:
   build:
-    - posix                              # [win]
-    - {{ posix }}autoconf                  # [win]
-    - {{ posix }}automake{{ am_version }}  # [win]
-    - {{ posix }}libtool
-    - {{ posix }}patch                     # [win]
-    - {{ posix }}sed                       # [win]
-    - {{ native }}binutils                 # [win]
-    - {{ native }}crt-git                  # [win]
-    - {{ stdlib('c') }}
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-    - make                               # [unix]
+    - m2-base                      # [win]
+    - m2-autoconf                  # [win]
+    - m2-automake{{ am_version }}  # [win]
+    - m2-libtool                   # [win]
+    - m2-make                      # [win]
+    - m2-patch                     # [win]
+    - m2-sed                       # [win]
+    - binutils                     # [win]
+    - {{ stdlib('c') }}            # [not win]
+    - {{ compiler('c') }}          # [not win]
+    - {{ compiler('cxx') }}        # [not win]
+    - {{ stdlib('m2w64_c') }}      # [win]
+    - {{ compiler('m2w64_c') }}    # [win]
+    - {{ compiler('m2w64_cxx') }}  # [win]
+    - make                         # [not win]
+    - libtool                      # [not win]
   host:
     - libiconv  # [not linux]
-
 
 outputs:
   - name: libintl
@@ -53,18 +54,22 @@ outputs:
     script: install-libintl.bat  # [not unix]
     requirements:
       build:
-        - posix                              # [win]
-        - {{ posix }}autoconf                  # [win]
-        - {{ posix }}automake{{ am_version }}  # [win]
-        - {{ posix }}libtool
-        - {{ posix }}patch                     # [win]
-        - {{ posix }}sed                       # [win]
-        - {{ native }}binutils                 # [win]
-        - {{ native }}crt-git                  # [win]
-        - {{ stdlib('c') }}                  # [not win]
-        - {{ compiler('c') }}                # [not win]
-        - {{ compiler('cxx') }}              # [not win]
-        - make                               # [unix]
+        - m2-base                      # [win]
+        - m2-autoconf                  # [win]
+        - m2-automake{{ am_version }}  # [win]
+        - m2-libtool                   # [win]
+        - m2-make                      # [win]
+        - m2-patch                     # [win]
+        - m2-sed                       # [win]
+        - binutils                     # [win]
+        - {{ stdlib('c') }}            # [not win]
+        - {{ compiler('c') }}          # [not win]
+        - {{ compiler('cxx') }}        # [not win]
+        - {{ stdlib('m2w64_c') }}      # [win]
+        - {{ compiler('m2w64_c') }}    # [win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
+        - make                         # [not win]
+        - libtool                      # [not win]
       host:
         - libiconv  # [not linux]
     test:
@@ -72,11 +77,11 @@ outputs:
         # Only the actual binary (versioned) variant should be in this package
         - test -f ${PREFIX}/lib/libintl.*.dylib                   # [osx]
         - test -f ${PREFIX}/lib/libintl.so.*                      # [linux]
-        - if not exist %PREFIX%\Library\bin\intl-*.dll exit /b 1  # [win]
+        - if not exist %PREFIX%\Library\bin\msys-intl-*.dll exit /b 1  # [win]
         # The unversioned variants as well as the lib on Windows should be in the main gettext package.
         - test ! -f ${PREFIX}/lib/libintl$SHLIB_EXT               # [not win]
         - test ! -f ${PREFIX}/include/libintl.h                   # [osx]
-        - if exist %PREFIX%\Library\lib\intl.dll.lib exit /b 1    # [win]
+        - if exist %PREFIX%\Library\lib\libintl.dll.a  exit /b 1    # [win]
         - if exist %PREFIX%\Library\lib\intl.lib exit /b 1        # [win]
         - if exist %PREFIX%\Library\include\libintl.h exit /b1    # [win]
     about:
@@ -97,18 +102,22 @@ outputs:
     script: install-libintl-devel.bat  # [not unix]
     requirements:
       build:
-        - posix                              # [win]
-        - {{ posix }}autoconf                  # [win]
-        - {{ posix }}automake{{ am_version }}  # [win]
-        - {{ posix }}libtool
-        - {{ posix }}patch                     # [win]
-        - {{ posix }}sed                       # [win]
-        - {{ native }}binutils                 # [win]
-        - {{ native }}crt-git                  # [win]
-        - {{ stdlib('c') }}                  # [not win]
-        - {{ compiler('c') }}                # [not win]
-        - {{ compiler('cxx') }}              # [not win]
-        - make                               # [unix]
+        - m2-base                      # [win]
+        - m2-autoconf                  # [win]
+        - m2-automake{{ am_version }}  # [win]
+        - m2-libtool                   # [win]
+        - m2-make                      # [win]
+        - m2-patch                     # [win]
+        - m2-sed                       # [win]
+        - binutils                     # [win]
+        - {{ stdlib('c') }}            # [not win]
+        - {{ compiler('c') }}          # [not win]
+        - {{ compiler('cxx') }}        # [not win]
+        - {{ stdlib('m2w64_c') }}      # [win]
+        - {{ compiler('m2w64_c') }}    # [win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
+        - make                         # [not win]
+        - libtool                      # [not win]
       host:
         - libiconv  # [not linux]
         - {{ pin_subpackage('libintl', exact=true) }}
@@ -118,7 +127,7 @@ outputs:
       commands:
         - test -f ${PREFIX}/lib/libintl${SHLIB_EXT}                   # [osx]
         - test -f ${PREFIX}/include/libintl.h                         # [osx]
-        - if not exist %PREFIX%\Library\lib\intl.dll.lib exit /b 1    # [win]
+        - if not exist %PREFIX%\Library\lib\libintl.dll.a  exit /b 1    # [win]
         - if not exist %PREFIX%\Library\lib\intl.lib exit /b 1        # [win]
         - if not exist %PREFIX%\Library\include\libintl.h exit /b1    # [win]
     about:
@@ -138,18 +147,22 @@ outputs:
     script: install-asprintf.bat  # [not unix]
     requirements:
       build:
-        - posix                              # [win]
-        - {{ posix }}autoconf                  # [win]
-        - {{ posix }}automake{{ am_version }}  # [win]
-        - {{ posix }}libtool
-        - {{ posix }}patch                     # [win]
-        - {{ posix }}sed                       # [win]
-        - {{ native }}binutils                 # [win]
-        - {{ native }}crt-git                  # [win]
-        - {{ stdlib('c') }}                  # [not win]
-        - {{ compiler('c') }}                # [not win]
-        - {{ compiler('cxx') }}              # [not win]
-        - make                               # [unix]
+        - m2-base                      # [win]
+        - m2-autoconf                  # [win]
+        - m2-automake{{ am_version }}  # [win]
+        - m2-libtool                   # [win]
+        - m2-make                      # [win]
+        - m2-patch                     # [win]
+        - m2-sed                       # [win]
+        - binutils                     # [win]
+        - {{ stdlib('c') }}            # [not win]
+        - {{ compiler('c') }}          # [not win]
+        - {{ compiler('cxx') }}        # [not win]
+        - {{ stdlib('m2w64_c') }}      # [win]
+        - {{ compiler('m2w64_c') }}    # [win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
+        - make                         # [not win]
+        - libtool                      # [not win]
       host:
         - libiconv  # [not linux]
     test:
@@ -157,10 +170,10 @@ outputs:
         # Only the actual binary (versioned) variant should be in this package
         - test -f ${PREFIX}/lib/libasprintf.*.dylib                   # [osx]
         - test -f ${PREFIX}/lib/libasprintf.so.0                      # [linux]
-        - if not exist %PREFIX%\Library\bin\asprintf-*.dll exit /b 1  # [win]
+        - if not exist %PREFIX%\Library\bin\msys-asprintf-*.dll exit /b 1  # [win]
         # The unversioned variants as well as the lib on Windows should be in the main gettext package.
         - test ! -f ${PREFIX}/lib/libasprintf$SHLIB_EXT               # [not win]
-        - if exist %PREFIX%\Library\lib\asprintf.dll.lib exit /b 1    # [win]
+        - if exist %PREFIX%\Library\lib\libasprintf.dll.a  exit /b 1    # [win]
         - if exist %PREFIX%\Library\lib\asprintf.lib exit /b 1    # [win]
     about:
       home: https://www.gnu.org/software/gettext/
@@ -181,18 +194,22 @@ outputs:
     script: install-asprintf-devel.bat  # [not unix]
     requirements:
       build:
-        - posix                              # [win]
-        - {{ posix }}autoconf                  # [win]
-        - {{ posix }}automake{{ am_version }}  # [win]
-        - {{ posix }}libtool
-        - {{ posix }}patch                     # [win]
-        - {{ posix }}sed                       # [win]
-        - {{ native }}binutils                 # [win]
-        - {{ native }}crt-git                  # [win]
-        - {{ stdlib('c') }}                  # [not win]
-        - {{ compiler('c') }}                # [not win]
-        - {{ compiler('cxx') }}              # [not win]
-        - make                               # [unix]
+        - m2-base                      # [win]
+        - m2-autoconf                  # [win]
+        - m2-automake{{ am_version }}  # [win]
+        - m2-libtool                   # [win]
+        - m2-make                      # [win]
+        - m2-patch                     # [win]
+        - m2-sed                       # [win]
+        - binutils                     # [win]
+        - {{ stdlib('c') }}            # [not win]
+        - {{ compiler('c') }}          # [not win]
+        - {{ compiler('cxx') }}        # [not win]
+        - {{ stdlib('m2w64_c') }}      # [win]
+        - {{ compiler('m2w64_c') }}    # [win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
+        - make                         # [not win]
+        - libtool                      # [not win]
       host:
         - libiconv  # [not linux]
         - {{ pin_subpackage('libasprintf', exact=True) }}
@@ -201,7 +218,7 @@ outputs:
     test:
       commands:
         - test -f ${PREFIX}/lib/libasprintf${SHLIB_EXT}               # [not win]
-        - if not exist %PREFIX%\Library\lib\asprintf.dll.lib exit /b 1    # [win]
+        - if not exist %PREFIX%\Library\lib\libasprintf.dll.a  exit /b 1    # [win]
         - if not exist %PREFIX%\Library\lib\asprintf.lib exit /b 1    # [win]
     about:
       home: https://www.gnu.org/software/gettext/
@@ -220,18 +237,22 @@ outputs:
     script: install-libgettextpo.bat  # [not unix]
     requirements:
       build:
-        - posix                              # [win]
-        - {{ posix }}autoconf                  # [win]
-        - {{ posix }}automake{{ am_version }}  # [win]
-        - {{ posix }}libtool
-        - {{ posix }}patch                     # [win]
-        - {{ posix }}sed                       # [win]
-        - {{ native }}binutils                 # [win]
-        - {{ native }}crt-git                  # [win]
-        - {{ stdlib('c') }}                  # [not win]
-        - {{ compiler('c') }}                # [not win]
-        - {{ compiler('cxx') }}              # [not win]
-        - make                               # [unix]
+        - m2-base                      # [win]
+        - m2-autoconf                  # [win]
+        - m2-automake{{ am_version }}  # [win]
+        - m2-libtool                   # [win]
+        - m2-make                      # [win]
+        - m2-patch                     # [win]
+        - m2-sed                       # [win]
+        - binutils                     # [win]
+        - {{ stdlib('c') }}            # [not win]
+        - {{ compiler('c') }}          # [not win]
+        - {{ compiler('cxx') }}        # [not win]
+        - {{ stdlib('m2w64_c') }}      # [win]
+        - {{ compiler('m2w64_c') }}    # [win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
+        - make                         # [not win]
+        - libtool                      # [not win]
       host:
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
         - libiconv  # [not linux]
@@ -242,10 +263,10 @@ outputs:
         # Only the actual binary (versioned) variant should be in this package
         - test -f ${PREFIX}/lib/libgettextpo.*.dylib                   # [osx]
         - test -f ${PREFIX}/lib/libgettextpo.so.0                      # [linux]
-        - if not exist %PREFIX%\Library\bin\gettextpo-*.dll exit /b 1  # [win]
+        - if not exist %PREFIX%\Library\bin\msys-gettextpo-*.dll exit /b 1  # [win]
         # The unversioned variants as well as the lib on Windows should be in the main gettext package.
         - test ! -f ${PREFIX}/lib/libgettextpo$SHLIB_EXT               # [not win]
-        - if exist %PREFIX%\Library\lib\gettextpo.dll.lib exit /b 1    # [win]
+        - if exist %PREFIX%\Library\lib\libgettextpo.dll.a  exit /b 1    # [win]
         - if exist %PREFIX%\Library\lib\gettextpo.lib exit /b 1    # [win]
     about:
       home: https://www.gnu.org/software/gettext/
@@ -264,18 +285,22 @@ outputs:
     script: install-libgettextpo-devel.bat  # [not unix]
     requirements:
       build:
-        - posix                              # [win]
-        - {{ posix }}autoconf                  # [win]
-        - {{ posix }}automake{{ am_version }}  # [win]
-        - {{ posix }}libtool
-        - {{ posix }}patch                     # [win]
-        - {{ posix }}sed                       # [win]
-        - {{ native }}binutils                 # [win]
-        - {{ native }}crt-git                  # [win]
-        - {{ stdlib('c') }}                  # [not win]
-        - {{ compiler('c') }}                # [not win]
-        - {{ compiler('cxx') }}              # [not win]
-        - make                               # [unix]
+        - m2-base                      # [win]
+        - m2-autoconf                  # [win]
+        - m2-automake{{ am_version }}  # [win]
+        - m2-libtool                   # [win]
+        - m2-make                      # [win]
+        - m2-patch                     # [win]
+        - m2-sed                       # [win]
+        - binutils                     # [win]
+        - {{ stdlib('c') }}            # [not win]
+        - {{ compiler('c') }}          # [not win]
+        - {{ compiler('cxx') }}        # [not win]
+        - {{ stdlib('m2w64_c') }}      # [win]
+        - {{ compiler('m2w64_c') }}    # [win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
+        - make                         # [not win]
+        - libtool                      # [not win]
       host:
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libgettextpo', exact=True) }}
@@ -286,7 +311,7 @@ outputs:
     test:
       commands:
         - test -f ${PREFIX}/lib/libgettextpo$SHLIB_EXT               # [not win]
-        - if not exist %PREFIX%\Library\lib\gettextpo.dll.lib exit /b 1    # [win]
+        - if not exist %PREFIX%\Library\lib\libgettextpo.dll.a  exit /b 1    # [win]
         - if not exist %PREFIX%\Library\lib\gettextpo.lib exit /b 1    # [win]
     about:
       home: https://www.gnu.org/software/gettext/
@@ -302,18 +327,22 @@ outputs:
         - {{ compiler('cxx') }}
     requirements:
       build:
-        - posix                              # [win]
-        - {{ posix }}autoconf                  # [win]
-        - {{ posix }}automake{{ am_version }}  # [win]
-        - {{ posix }}libtool
-        - {{ posix }}patch                     # [win]
-        - {{ posix }}sed                       # [win]
-        - {{ native }}binutils                 # [win]
-        - {{ native }}crt-git                  # [win]
-        - {{ stdlib('c') }}
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
-        - make                               # [unix]
+        - m2-base                      # [win]
+        - m2-autoconf                  # [win]
+        - m2-automake{{ am_version }}  # [win]
+        - m2-libtool                   # [win]
+        - m2-make                      # [win]
+        - m2-patch                     # [win]
+        - m2-sed                       # [win]
+        - binutils                     # [win]
+        - {{ stdlib('c') }}            # [not win]
+        - {{ compiler('c') }}          # [not win]
+        - {{ compiler('cxx') }}        # [not win]
+        - {{ stdlib('m2w64_c') }}      # [win]
+        - {{ compiler('m2w64_c') }}    # [win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
+        - make                         # [not win]
+        - libtool                      # [not win]
       host:
         - libiconv  # [not linux]
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
@@ -355,18 +384,22 @@ outputs:
     script: install-gettext.bat  # [not unix]
     requirements:
       build:
-        - posix                              # [win]
-        - {{ posix }}autoconf                  # [win]
-        - {{ posix }}automake{{ am_version }}  # [win]
-        - {{ posix }}libtool
-        - {{ posix }}patch                     # [win]
-        - {{ posix }}sed                       # [win]
-        - {{ native }}binutils                 # [win]
-        - {{ native }}crt-git                  # [win]
-        - {{ stdlib('c') }}                  # [not win]
-        - {{ compiler('c') }}                # [not win]
-        - {{ compiler('cxx') }}              # [not win]
-        - make                               # [unix]
+        - m2-base                      # [win]
+        - m2-autoconf                  # [win]
+        - m2-automake{{ am_version }}  # [win]
+        - m2-libtool                   # [win]
+        - m2-make                      # [win]
+        - m2-patch                     # [win]
+        - m2-sed                       # [win]
+        - binutils                     # [win]
+        - {{ stdlib('c') }}            # [not win]
+        - {{ compiler('c') }}          # [not win]
+        - {{ compiler('cxx') }}        # [not win]
+        - {{ stdlib('m2w64_c') }}      # [win]
+        - {{ compiler('m2w64_c') }}    # [win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
+        - make                         # [not win]
+        - libtool                      # [not win]
       host:
         - libiconv  # [not linux]
         - {{ pin_subpackage('gettext-tools', exact=True) }}
@@ -391,8 +424,8 @@ outputs:
         {% for lib_ident in lib_idents %}
         - test -f ${PREFIX}/lib/lib{{ lib_ident }}$SHLIB_EXT                   # [not win]
         - test ! -f ${PREFIX}/lib/lib{{ lib_ident }}.a                         # [not win]
-        - if not exist %PREFIX%\Library\lib\{{ lib_ident }}.dll.lib exit /b 1  # [win]
-        - if not exist %PREFIX%\Library\bin\{{ lib_ident }}-*.dll exit /b 1    # [win]
+        - if not exist %PREFIX%\Library\lib\lib{{ lib_ident }}.dll.a  exit /b 1  # [win]
+        - if not exist %PREFIX%\Library\bin\msys-{{ lib_ident }}-*.dll exit /b 1    # [win]
         {% endfor %}
     about:
       home: https://www.gnu.org/software/gettext/

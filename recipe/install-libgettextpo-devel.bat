@@ -9,10 +9,10 @@ if errorlevel 1 exit 1
 if not exist %LIBRARY_PREFIX%\lib md %LIBRARY_PREFIX%\lib
 if errorlevel 1 exit 1
 
-copy gettext-tools\libgettextpo\.libs\gettextpo.dll.lib %LIBRARY_PREFIX%\lib
+copy gettext-tools\libgettextpo\.libs\libgettextpo.dll.a %LIBRARY_PREFIX%\lib
 if errorlevel 1 exit 1
 
 @rem Enforce dynamic linkage
-copy gettext-tools\libgettextpo\.libs\gettextpo.dll.lib %LIBRARY_PREFIX%\lib\gettextpo.lib
+copy gettext-tools\libgettextpo\.libs\libgettextpo.dll.a %LIBRARY_PREFIX%\lib\gettextpo.lib
 if errorlevel 1 exit 1
 

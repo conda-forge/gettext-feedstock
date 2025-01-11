@@ -1,12 +1,6 @@
 :: Delegate to the Unix script. We need to translate the key path variables
 :: to be Unix-y rather than Windows-y, though.
 
-copy "%RECIPE_DIR%\build.sh" .
-
-set MSYSTEM=MINGW%ARCH%
-set MSYS2_PATH_TYPE=inherit
-set CHERE_INVOKING=1
-
 set "saved_recipe_dir=%RECIPE_DIR%"
 FOR /F "delims=" %%i IN ('cygpath.exe -u -p "%PATH%"') DO set "PATH_OVERRIDE=%%i"
 FOR /F "delims=" %%i IN ('cygpath.exe -u "%BUILD_PREFIX%"') DO set "BUILD_PREFIX=%%i"
@@ -19,6 +13,6 @@ FOR /F "delims=" %%i IN ('cygpath.exe -u "%SP_DIR%"') DO set "SP_DIR=%%i"
 FOR /F "delims=" %%i IN ('cygpath.exe -u "%SRC_DIR%"') DO set "SRC_DIR=%%i"
 FOR /F "delims=" %%i IN ('cygpath.exe -u "%STDLIB_DIR%"') DO set "STDLIB_DIR=%%i"
 
-bash -lxc "./build.sh"
+bash %saved_recipe_dir%\build.sh
 if errorlevel 1 exit 1
 exit 0

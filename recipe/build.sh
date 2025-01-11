@@ -3,67 +3,56 @@
 set -exuo pipefail
 
 if [[ "$target_platform" == win* ]] ; then
-    export PREFIX="$LIBRARY_PREFIX_U"
-    export PATH="$PATH_OVERRIDE"
-    export BUILD=x86_64-pc-mingw64
-    export HOST=x86_64-pc-mingw64
+  export PREFIX="$LIBRARY_PREFIX_U"
+  export PATH="$PATH_OVERRIDE"
 
-    # Setup needed for autoreconf. Keep am_version sync'ed with meta.yaml.
+  # For the new msys2 platform, the libiconv stub library
+  # naming scheme needs to be updated.
 
-    am_version=1.15
-    export ACLOCAL=aclocal-$am_version
-    export AUTOMAKE=automake-$am_version
+  cp $PREFIX/lib/iconv.lib $PREFIX/lib/libiconv.a
 
-    # Automake used to automatically deploy the "compile" wrapper script
-    # that wrapped MSVC to help it work more like Unix compilers. As of
-    # 0.21, we have to provide and use the script ourselves. Ditto for
-    # "ar-lib".
+  # There are a zillion files in the build system in this package
+  # that encode Windows-specific settings by checking that the Autoconf
+  # host looks like mingw*. Unfortunately for us, here it now looks like
+  # msys-... There are so many files that patching them individually
+  # would be hugely annoying, but a mechanical update get us going.
 
-    export AR="$RECIPE_DIR/ar-lib lib"
-    export CC="$RECIPE_DIR/compile cl.exe -nologo"
-    export CPP="cl.exe -nologo -E"
-    export CXX="$RECIPE_DIR/compile cl.exe -nologo"
-    export CXXCPP="cl.exe -nologo -E"
-    export LD="link"
-    export NM="dumpbin -symbols"
-    export RANLIB=":"
-    export STRIP=":"
+  echo
+  echo "Editing build files for msys ..."
+  for namepat in "*.m4" Makefile.am configure.ac ; do
+    find -name "$namepat" -print0 |xargs -0 sed -i -e 's/mingw\*/mingw* | msys*/g'
+  done
+  echo "... done"
+  echo
 
-    # We also need a custom wrapper for `cl -nologo -E` because the
-    # invocation of the "windres"/"rc" tool can't handle preprocessor names
-    # containing spaces. Windres also breaks if we don't use `--use-temp-file`
-    # -- looks like the Cygwin popen() call might not work on Windows.
+  # Setup needed for autoreconf. Keep am_version sync'ed with meta.yaml.
 
-    export RC="windres --use-temp-file --preprocessor $RECIPE_DIR/msvcpp.sh"
-    export WINDRES="windres --use-temp-file --preprocessor $RECIPE_DIR/msvcpp.sh"
+  am_version=1.16
+  export ACLOCAL=aclocal-$am_version
+  export AUTOMAKE=automake-$am_version
 
-    # We need to get the mingw stub libraries that let us link with system
-    # DLLs. Stock gettext gets built on Windows so I'm not sure why it doesn't
-    # have any needed Windows OS libraries specified anywhere, but it doesn't,
-    # so we add them here too.
+  # We need to configure the "windres"/"rc" tool to apply preprocessing.
+  # It also breaks if we don't use `--use-temp-file` -- looks like the 
+  # Cygwin popen() call might not work on Windows.
 
-    export LDFLAGS="${LDFLAGS:-} -L/mingw-w64/x86_64-w64-mingw32/lib -L$PREFIX/lib"
+  export RC="x86_64-w64-mingw32-windres --use-temp-file --preprocessor=x86_64-w64-mingw32-cpp --preprocessor-arg=-DRC_INVOKED"
+  export WINDRES="$RC"
 
-    # We need the -MD flag ("link with MSVCRT.lib"); otherwise our executables
-    # can crash with error -1073740791 = 0xC0000409 = STATUS_STACK_BUFFER_OVERRUN
-    #
-    # But -GL messes up Libtool's identification of how the linker works;
-    # it parses dumpbin output and: https://stackoverflow.com/a/11850034/3760486
+  # We need to get the stub libraries that let us link with system
+  # DLLs, and host prefix headers for libiconv.
 
-    export CFLAGS=$(echo "-MD ${CFLAGS:-} " |sed -e "s, [-/]GL ,,")
-    export CXXFLAGS=$(echo "-MD ${CXXFLAGS:-} " |sed -e "s, [-/]GL ,,")
+  export LDFLAGS="${LDFLAGS:-} -L$BUILD_PREFIX/Library/x86_64-w64-mingw32/sysroot/usr/lib -L$PREFIX/lib"
+  export CPPFLAGS="${CPPFLAGS:-} -I$PREFIX/Library/include"
 
-    autoreconf -vfi
+  autoreconf -vfi
 else
-    # Get an updated config.sub and config.guess
-   cp $BUILD_PREFIX/share/libtool/build-aux/config.* build-aux/
-   export CPP="$CC -E"
+  # Get an updated config.sub and config.guess
+  cp $BUILD_PREFIX/share/libtool/build-aux/config.* build-aux/
+  export CPP="$CC -E"
 fi
 
 ./configure \
   --prefix=$PREFIX \
-  --build=$BUILD \
-  --host=$HOST \
   --disable-static \
   --disable-csharp \
   --disable-dependency-tracking \
@@ -71,8 +60,6 @@ fi
   --disable-native-java \
   --disable-openmp \
   --enable-fast-install \
-  --without-emacs || (cat config.log; cat gettext-runtime/config.log; exit 1)
+  --without-emacs || { cat config.log; cat gettext-runtime/config.log; exit 1; }
 
 make -j${CPU_COUNT}
-
-find . -name '*.dll'
