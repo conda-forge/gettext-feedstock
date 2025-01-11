@@ -82,3 +82,16 @@ index 249fd14..4db994e 100644
  AM_INIT_AUTOMAKE([silent-rules])
  
  dnl Installation directories.
+diff --git a/gettext-runtime/libasprintf/gnulib-lib/vasnprintf.h b/gettext-runtime/libasprintf/gnulib-lib/vasnprintf.h
+index 7ed9145..04b5792 100644
+--- a/gettext-runtime/libasprintf/gnulib-lib/vasnprintf.h
++++ b/gettext-runtime/libasprintf/gnulib-lib/vasnprintf.h
+@@ -29,7 +29,7 @@
+ #include <stddef.h>
+ 
+ /* Get _GL_ATTRIBUTE_SPEC_PRINTF_STANDARD.  */
+-#include <stdio.h>
++/* #include <stdio.h> conda-forge: mingw static decl breaks libasprintf */
+ 
+ #ifdef __cplusplus
+ extern "C" {
