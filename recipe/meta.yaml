@@ -48,8 +48,13 @@ outputs:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libintl') }}
+      ignore_run_exports:
+        - libgcc         # [win]
+        - libwinpthread  # [win]
+        - ucrt           # [win]
       ignore_run_exports_from:
-        - {{ compiler('cxx') }}  # [unix]
+        - {{ compiler('cxx') }}        # [not win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
     script: install-libintl.sh  # [unix]
     script: install-libintl.bat  # [not unix]
     requirements:
@@ -97,7 +102,8 @@ outputs:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libintl') }}
       ignore_run_exports_from:
-        - {{ compiler('cxx') }}  # [unix]
+        - {{ compiler('cxx') }}        # [not win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
     script: install-libintl-devel.sh  # [unix]
     script: install-libintl-devel.bat  # [not unix]
     requirements:
@@ -143,6 +149,9 @@ outputs:
         - {{ pin_subpackage('libasprintf') }}
       ignore_run_exports:
         - libiconv
+        - libgcc         # [win]
+        - libwinpthread  # [win]
+        - ucrt           # [win]
     script: install-asprintf.sh  # [unix]
     script: install-asprintf.bat  # [not unix]
     requirements:
@@ -187,7 +196,8 @@ outputs:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libasprintf') }}
       ignore_run_exports_from:
-        - {{ compiler('cxx') }}  # [unix]
+        - {{ compiler('cxx') }}        # [not win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
       ignore_run_exports:
         - libiconv
     script: install-asprintf-devel.sh  # [unix]
@@ -231,8 +241,13 @@ outputs:
       run_exports:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libgettextpo') }}
+      ignore_run_exports:
+        - libgcc         # [win]
+        - libwinpthread  # [win]
+        - ucrt           # [win]
       ignore_run_exports_from:
-        - {{ compiler('cxx') }}  # [unix]
+        - {{ compiler('cxx') }}        # [not win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
     script: install-libgettextpo.sh  # [unix]
     script: install-libgettextpo.bat  # [not unix]
     requirements:
@@ -280,7 +295,8 @@ outputs:
         # Seems pretty good: https://abi-laboratory.pro/tracker/timeline/gettext/
         - {{ pin_subpackage('libgettextpo') }}
       ignore_run_exports_from:
-        - {{ compiler('cxx') }}  # [unix]
+        - {{ compiler('cxx') }}        # [not win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
     script: install-libgettextpo-devel.sh  # [unix]
     script: install-libgettextpo-devel.bat  # [not unix]
     requirements:
@@ -323,8 +339,12 @@ outputs:
     script: install-gettext.sh  # [unix]
     script: install-gettext.bat  # [not unix]
     build:
+      ignore_run_exports:
+        - libgcc         # [win]
+        - libwinpthread  # [win]
       ignore_run_exports_from:
-        - {{ compiler('cxx') }}
+        - {{ compiler('cxx') }}        # [not win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
     requirements:
       build:
         - m2-base                      # [win]
