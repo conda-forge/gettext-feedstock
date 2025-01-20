@@ -1,4 +1,4 @@
-From 8538d082c870ef99bccb8c48acc0c40e525c07cb Mon Sep 17 00:00:00 2001
+From 3f98b148acbbd8fe02e6b8449e2d3ad5edc5cf60 Mon Sep 17 00:00:00 2001
 From: Peter Williams <peter@newton.cx>
 Date: Mon, 3 Sep 2018 17:37:12 -0400
 Subject: [PATCH 5/8] CXXLD is not a thing.
@@ -11,7 +11,7 @@ CC and CXX (the C and C++ compilers) are the same thing.
  2 files changed, 12 insertions(+), 12 deletions(-)
 
 diff --git a/gettext-tools/gnulib-lib/Makefile.am b/gettext-tools/gnulib-lib/Makefile.am
-index a7fa494..a7e7d88 100644
+index fdea82a..7dc2e6b 100644
 --- a/gettext-tools/gnulib-lib/Makefile.am
 +++ b/gettext-tools/gnulib-lib/Makefile.am
 @@ -111,7 +111,7 @@ libgettextlib_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
@@ -24,7 +24,7 @@ index a7fa494..a7e7d88 100644
  # Use the same definition of CXXLD as Automake generates in other Makefiles.
  CXXLD = $(CXX)
 diff --git a/gettext-tools/src/Makefile.am b/gettext-tools/src/Makefile.am
-index 036ec64..607dcf0 100644
+index 30e464c..23231cb 100644
 --- a/gettext-tools/src/Makefile.am
 +++ b/gettext-tools/src/Makefile.am
 @@ -552,47 +552,47 @@ xgettext_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \

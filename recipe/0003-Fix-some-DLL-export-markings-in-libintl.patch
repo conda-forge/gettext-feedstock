@@ -1,4 +1,4 @@
-From d7490b79ce621dc4d859c1a82712f2ffe7366593 Mon Sep 17 00:00:00 2001
+From 742a77a10ceb08d9b9d3bc9b88623b2121f187ed Mon Sep 17 00:00:00 2001
 From: Peter Williams <peter@newton.cx>
 Date: Mon, 3 Sep 2018 17:34:54 -0400
 Subject: [PATCH 3/8] Fix some DLL export markings in libintl.

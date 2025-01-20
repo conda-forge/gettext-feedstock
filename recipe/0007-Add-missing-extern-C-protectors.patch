@@ -1,4 +1,4 @@
-From 7c58479500f1caf6085662ead8702cf06127deb0 Mon Sep 17 00:00:00 2001
+From b5c0e762fcdcfaaf11068b20b47306b6bcf8eee1 Mon Sep 17 00:00:00 2001
 From: Peter Williams <peter@newton.cx>
 Date: Mon, 3 Sep 2018 17:54:36 -0400
 Subject: [PATCH 7/8] Add missing 'extern "C"' protectors
@@ -12,8 +12,9 @@ initializers. But C++ allows this, so the code will come out fine if compiled
 as C++. However, without proper 'extern "C"' protection, you get linkage
 errors.
 ---
- gettext-tools/src/plural-table.h      | 8 ++++++++
- 
+ gettext-tools/src/plural-table.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
 diff --git a/gettext-tools/src/plural-table.h b/gettext-tools/src/plural-table.h
 index e6c52bb..d736ef0 100644
 --- a/gettext-tools/src/plural-table.h

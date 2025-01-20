@@ -1,4 +1,4 @@
-From cf1eb94eb581d73c3079a71955f5d2d9a307a5ca Mon Sep 17 00:00:00 2001
+From 86edb795eeb0fb3487e29490030ed8061bde27b0 Mon Sep 17 00:00:00 2001
 From: Peter Williams <peter@newton.cx>
 Date: Mon, 3 Sep 2018 17:39:00 -0400
 Subject: [PATCH 6/8] Work around Unixisms in libgettextpo
@@ -11,10 +11,10 @@ use a temporary file instead.
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/gettext-tools/libgettextpo/Makefile.am b/gettext-tools/libgettextpo/Makefile.am
-index 98d65cc..9cfb6ce 100644
+index 8150435..806e7a5 100644
 --- a/gettext-tools/libgettextpo/Makefile.am
 +++ b/gettext-tools/libgettextpo/Makefile.am
-@@ -174,7 +174,7 @@ config.h: $(BUILT_SOURCES)
+@@ -173,7 +173,7 @@ config.h: $(BUILT_SOURCES)
  	  echo '#endif /* GTPO_CONFIG_H */'; \
  	} > config.h && \
  	if test -n "$(HAVE_GLOBAL_SYMBOL_PIPE)"; then \
@@ -23,7 +23,7 @@ index 98d65cc..9cfb6ce 100644
  	    for f in $(libgettextpo_la_AUXSOURCES) $(libgnu_la_SOURCES) $(libgnu_la_LIBADD); do \
  	      case $$f in \
  	        *.c | *.$(OBJEXT) | *.lo ) \
-@@ -182,12 +182,12 @@ config.h: $(BUILT_SOURCES)
+@@ -181,12 +181,12 @@ config.h: $(BUILT_SOURCES)
  	          test -f $$sf || sf=$(srcdir)/$$sf; \
  	          of=`echo "$$f" | sed -e 's,^.*/,,' -e 's,\\.[^.]*$$,,'`.$(OBJEXT); \
  	          $(COMPILE) $(DEFS) $(GL_CFLAG_INHIBIT_WARNINGS) -c $$sf || { rm -f config.h; exit 1; }; \
