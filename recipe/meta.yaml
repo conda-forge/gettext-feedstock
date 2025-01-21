@@ -8,8 +8,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://ftp.gnu.org/pub/gnu/gettext/gettext-{{ version }}.tar.xz
-  sha256: c1f97a72a7385b7e71dd07b5fea6cdaf12c9b88b564976b23bd8c11857af2970
+  git_url: https://git.savannah.gnu.org/git/gettext.git
+  git_rev: 97f712f8110a1807907fd60340fb6b33fdb52565
   patches:
     - 0001-Mark-v-snprintf-as-available.patch                          # [win]
     - 0002-Prevent-libtool-from-worrying-about-dependent-librar.patch  # [win]
