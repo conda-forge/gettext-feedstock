@@ -8,8 +8,8 @@ package:
   version: {{ version }}
 
 source:
-  git_url: https://git.savannah.gnu.org/git/gettext.git
-  git_rev: 97f712f8110a1807907fd60340fb6b33fdb52565
+  url: https://github.com/xhochy/gettext-mirror/archive/175d51ae6104f7aec369e2075582b9cbb2ddb155.tar.gz
+  sha256: 5c650bbd3a4c32fa5a3b130575e12f58057b352395e8779c3b709641057f123f
   patches:
     - 0001-Mark-v-snprintf-as-available.patch                          # [win]
     - 0002-Prevent-libtool-from-worrying-about-dependent-librar.patch  # [win]
