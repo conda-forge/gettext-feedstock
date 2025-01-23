@@ -2,6 +2,11 @@
 
 set -exuo pipefail
 
+./autogen.sh
+mkdir -p $PREFIX/share/gettext
+wget https://alpha.gnu.org/gnu/gettext/archive.dir-0.22.5.tar.xz -O $PREFIX/share/gettext/archive.dir.tar.xz
+cp $BUILD_PREFIX/share/gnuconfig/config.* gettext-tools/examples/hello-c++-kde/admin/
+
 if [[ "$target_platform" == win* ]] ; then
     export PREFIX="$LIBRARY_PREFIX_U"
     export PATH="$PATH_OVERRIDE"

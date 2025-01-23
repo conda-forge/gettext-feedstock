@@ -8,17 +8,20 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/xhochy/gettext-mirror/archive/175d51ae6104f7aec369e2075582b9cbb2ddb155.tar.gz
-  sha256: 5c650bbd3a4c32fa5a3b130575e12f58057b352395e8779c3b709641057f123f
-  patches:
-    - 0001-Mark-v-snprintf-as-available.patch                          # [win]
-    - 0002-Prevent-libtool-from-worrying-about-dependent-librar.patch  # [win]
-    - 0003-Fix-some-DLL-export-markings-in-libintl.patch               # [win]
-    - 0004-Fix-quoting-when-invoking-windres.patch                     # [win]
-    - 0005-CXXLD-is-not-a-thing.patch                                  # [win]
-    - 0006-Work-around-Unixisms-in-libgettextpo.patch                  # [win]
-    - 0007-Add-missing-extern-C-protectors.patch                       # [win]
-    - 0008-Avoid-close-inconsistencies.patch                           # [win]
+  - url: https://github.com/xhochy/gettext-mirror/archive/97f712f8110a1807907fd60340fb6b33fdb52565.tar.gz
+    sha256: fa24c9455ac8b43d2a5d4a9055d6ce667e2d92583c690803eee8bb7d946196bd
+    patches:
+      - 0001-Mark-v-snprintf-as-available.patch                          # [win]
+      - 0002-Prevent-libtool-from-worrying-about-dependent-librar.patch  # [win]
+      - 0003-Fix-some-DLL-export-markings-in-libintl.patch               # [win]
+      - 0004-Fix-quoting-when-invoking-windres.patch                     # [win]
+      - 0005-CXXLD-is-not-a-thing.patch                                  # [win]
+      - 0006-Work-around-Unixisms-in-libgettextpo.patch                  # [win]
+      - 0007-Add-missing-extern-C-protectors.patch                       # [win]
+      - 0008-Avoid-close-inconsistencies.patch                           # [win]
+  - url: https://github.com/xhochy/gnulib-mirror/archive/93b78ec081ff9e5be8f4cdcc44dd4f6f5da15164.tar.gz
+    sha256: 1b18f9758d4e597ca1de07ab67d06db63618181be0639b25aaf8a80c9cfbf022
+    folder: gnulib
 
 build:
   number: 0
@@ -37,6 +40,12 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - make                               # [unix]
+    - automake
+    - bison
+    - texinfo
+    - sed
+    - gnuconfig
+    - groff
   host:
     - libiconv  # [not linux]
 
