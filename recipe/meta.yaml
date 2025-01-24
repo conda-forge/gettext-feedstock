@@ -48,6 +48,8 @@ requirements:
     - groff
     - wget
     - gperf
+    # Only needed for bootstapping
+    - libiconv  # [linux]
   host:
     - libiconv  # [not linux]
 
