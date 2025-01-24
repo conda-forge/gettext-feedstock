@@ -47,6 +47,7 @@ requirements:
     - gnuconfig
     - groff
     - wget
+    - gperf
   host:
     - libiconv  # [not linux]
 
