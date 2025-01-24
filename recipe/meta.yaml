@@ -46,6 +46,7 @@ requirements:
     - sed
     - gnuconfig
     - groff
+    - wget
   host:
     - libiconv  # [not linux]
 
