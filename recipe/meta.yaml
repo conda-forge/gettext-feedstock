@@ -48,6 +48,7 @@ requirements:
     - groff
     - wget
     - gperf
+    - xz-tools
     # Only needed for bootstapping
     - libiconv  # [linux]
   host:
