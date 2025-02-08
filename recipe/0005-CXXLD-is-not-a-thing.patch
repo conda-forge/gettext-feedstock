@@ -11,10 +11,10 @@ CC and CXX (the C and C++ compilers) are the same thing.
  2 files changed, 12 insertions(+), 12 deletions(-)
 
 diff --git a/gettext-tools/gnulib-lib/Makefile.am b/gettext-tools/gnulib-lib/Makefile.am
-index ab729cd..e74f9f2 100644
+index a7fa494..a7e7d88 100644
 --- a/gettext-tools/gnulib-lib/Makefile.am
 +++ b/gettext-tools/gnulib-lib/Makefile.am
-@@ -81,7 +81,7 @@ libgettextlib_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+@@ -111,7 +111,7 @@ libgettextlib_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
  else
  libgettextlib_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
  	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
@@ -24,10 +24,10 @@ index ab729cd..e74f9f2 100644
  # Use the same definition of CXXLD as Automake generates in other Makefiles.
  CXXLD = $(CXX)
 diff --git a/gettext-tools/src/Makefile.am b/gettext-tools/src/Makefile.am
-index 0f77ee8..2a8c9d8 100644
+index 036ec64..607dcf0 100644
 --- a/gettext-tools/src/Makefile.am
 +++ b/gettext-tools/src/Makefile.am
-@@ -493,47 +493,47 @@ xgettext_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+@@ -552,47 +552,47 @@ xgettext_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
  else
  libgettextsrc_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
  	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \

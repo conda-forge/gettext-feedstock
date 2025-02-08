@@ -12,46 +12,8 @@ initializers. But C++ allows this, so the code will come out fine if compiled
 as C++. However, without proper 'extern "C"' protection, you get linkage
 errors.
 ---
- gettext-tools/gnulib-lib/exitfail.h   | 8 ++++++++
- gettext-tools/libgettextpo/exitfail.h | 8 ++++++++
  gettext-tools/src/plural-table.h      | 8 ++++++++
- gettext-tools/src/po-gram-gen2.h      | 9 +++++++++
- 4 files changed, 33 insertions(+)
-
-diff --git a/gettext-tools/gnulib-lib/exitfail.h b/gettext-tools/gnulib-lib/exitfail.h
-index 4514fb0..b5760f9 100644
---- a/gettext-tools/gnulib-lib/exitfail.h
-+++ b/gettext-tools/gnulib-lib/exitfail.h
-@@ -15,4 +15,12 @@
-    You should have received a copy of the GNU Lesser General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
  
-+#ifdef __cplusplus
-+extern "C" {
-+#endif
-+
- extern DLL_VARIABLE int volatile exit_failure;
-+
-+#ifdef __cplusplus
-+}
-+#endif
-diff --git a/gettext-tools/libgettextpo/exitfail.h b/gettext-tools/libgettextpo/exitfail.h
-index 4514fb0..b5760f9 100644
---- a/gettext-tools/libgettextpo/exitfail.h
-+++ b/gettext-tools/libgettextpo/exitfail.h
-@@ -15,4 +15,12 @@
-    You should have received a copy of the GNU Lesser General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
- 
-+#ifdef __cplusplus
-+extern "C" {
-+#endif
-+
- extern DLL_VARIABLE int volatile exit_failure;
-+
-+#ifdef __cplusplus
-+}
-+#endif
 diff --git a/gettext-tools/src/plural-table.h b/gettext-tools/src/plural-table.h
 index e6c52bb..d736ef0 100644
 --- a/gettext-tools/src/plural-table.h
@@ -76,28 +38,3 @@ index e6c52bb..d736ef0 100644
 +#endif
 +
  #endif /* _PLURAL_TABLE_H */
-diff --git a/gettext-tools/src/po-gram-gen2.h b/gettext-tools/src/po-gram-gen2.h
-index 5fbf6b8..de41183 100644
---- a/gettext-tools/src/po-gram-gen2.h
-+++ b/gettext-tools/src/po-gram-gen2.h
-@@ -37,6 +37,11 @@
- 
- #ifndef YY_PO_GRAM_PO_GRAM_GEN_TAB_H_INCLUDED
- # define YY_PO_GRAM_PO_GRAM_GEN_TAB_H_INCLUDED
-+
-+#ifdef __cplusplus
-+extern "C" {
-+#endif
-+
- /* Debug traces.  */
- #ifndef PO_GRAM_DEBUG
- # if defined YYDEBUG
-@@ -109,4 +114,8 @@ extern DLL_VARIABLE PO_GRAM_STYPE po_gram_lval;
- int po_gram_parse (void);
- 
- 
-+#ifdef __cplusplus
-+}
-+#endif
-+
- #endif /* !YY_PO_GRAM_PO_GRAM_GEN_TAB_H_INCLUDED  */
