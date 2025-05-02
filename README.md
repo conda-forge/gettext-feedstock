@@ -13,6 +13,15 @@ Package license: LGPL-2.1-or-later AND GPL-3.0-or-later
 
 Summary: Internationalization package
 
+About gettext-tools
+-------------------
+
+Home: https://www.gnu.org/software/gettext/
+
+Package license: GPL-3.0-or-later
+
+Summary: Internationalization package (executable tools)
+
 About libasprintf
 -----------------
 
@@ -21,15 +30,6 @@ Home: https://www.gnu.org/software/gettext/
 Package license: LGPL-2.1-or-later
 
 Summary: C-style formatted output in C++
-
-About libgettextpo
-------------------
-
-Home: https://www.gnu.org/software/gettext/
-
-Package license: GPL-3.0-or-later
-
-Summary: library for interfacing programmatically with GNU gettext .po files
 
 About libasprintf-devel
 -----------------------
@@ -40,6 +40,15 @@ Package license: LGPL-2.1-or-later
 
 Summary: Decomposed printf argument list
 
+About libgettextpo
+------------------
+
+Home: https://www.gnu.org/software/gettext/
+
+Package license: GPL-3.0-or-later
+
+Summary: library for interfacing programmatically with GNU gettext .po files
+
 About libgettextpo-devel
 ------------------------
 
@@ -48,15 +57,6 @@ Home: https://www.gnu.org/software/gettext/
 Package license: GPL-3.0-or-later
 
 Summary: library for interfacing programmatically with GNU gettext .po files
-
-About gettext-tools
--------------------
-
-Home: https://www.gnu.org/software/gettext/
-
-Package license: GPL-3.0-or-later
-
-Summary: Internationalization package (executable tools)
 
 About libintl
 -------------
