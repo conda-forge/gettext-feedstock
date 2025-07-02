@@ -1,4 +1,4 @@
-{% set version = "0.24.1" %}
+{% set version = "0.24.2" %}
 {% set am_version = "1.15" %} #  keep synchronized with build.sh
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -19,7 +19,7 @@ package:
 
 source:
   url: https://ftp.gnu.org/pub/gnu/gettext/gettext-{{ version }}.tar.xz
-  sha256: 6164ec7aa61653ac9cdfb41d5c2344563b21f707da1562712e48715f1d2052a6
+  sha256: fcc0187f597aef6bc5bc95c629db1126315beb196b20570eaec6a4941850f7c5
 
 build:
   number: 0
