@@ -64,6 +64,7 @@ fi
   --prefix=$PREFIX \
   --build=$BUILD \
   --host=$HOST \
+  --with-libiconv-prefix=$PREFIX \
   --disable-static \
   --disable-csharp \
   --disable-dependency-tracking \

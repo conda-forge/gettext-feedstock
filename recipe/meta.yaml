@@ -22,7 +22,7 @@ source:
   sha256: 2c8294be238f03fb3fa65b8051057e5b68167f3e21f08008070cf40a7051ba22
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -40,7 +40,7 @@ requirements:
     - {{ compiler('cxx') }}
     - make                               # [unix]
   host:
-    - libiconv  # [not linux]
+    - libiconv
 
 
 outputs:
@@ -69,7 +69,7 @@ outputs:
         - {{ compiler('cxx') }}              # [not win]
         - make                               # [unix]
       host:
-        - libiconv  # [not linux]
+        - libiconv
     test:
       commands:
         # Only the actual binary (versioned) variant should be in this package
@@ -113,7 +113,7 @@ outputs:
         - {{ compiler('cxx') }}              # [not win]
         - make                               # [unix]
       host:
-        - libiconv  # [not linux]
+        - libiconv
         - {{ pin_subpackage('libintl', exact=true) }}
       run:
         - {{ pin_subpackage('libintl', exact=true) }}
@@ -154,7 +154,7 @@ outputs:
         - {{ compiler('cxx') }}              # [not win]
         - make                               # [unix]
       host:
-        - libiconv  # [not linux]
+        - libiconv
     test:
       commands:
         # Only the actual binary (versioned) variant should be in this package
@@ -197,7 +197,7 @@ outputs:
         - {{ compiler('cxx') }}              # [not win]
         - make                               # [unix]
       host:
-        - libiconv  # [not linux]
+        - libiconv
         - {{ pin_subpackage('libasprintf', exact=True) }}
       run:
         - {{ pin_subpackage('libasprintf', exact=True) }}
@@ -237,7 +237,7 @@ outputs:
         - make                               # [unix]
       host:
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
-        - libiconv  # [not linux]
+        - libiconv
       run:
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
     test:
@@ -282,7 +282,7 @@ outputs:
       host:
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libgettextpo', exact=True) }}
-        - libiconv  # [not linux]
+        - libiconv
       run:
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libgettextpo', exact=True) }}
@@ -318,7 +318,7 @@ outputs:
         - {{ compiler('cxx') }}
         - make                               # [unix]
       host:
-        - libiconv  # [not linux]
+        - libiconv
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libasprintf', exact=True ) }}
         - {{ pin_subpackage('libgettextpo', exact=True ) }}
@@ -371,7 +371,7 @@ outputs:
         - {{ compiler('cxx') }}              # [not win]
         - make                               # [unix]
       host:
-        - libiconv  # [not linux]
+        - libiconv
         - {{ pin_subpackage('gettext-tools', exact=True) }}
         - {{ pin_subpackage('libintl-devel', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
