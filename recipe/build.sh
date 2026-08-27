@@ -6,7 +6,11 @@ if [[ "$target_platform" == win* ]] ; then
     export PREFIX="$LIBRARY_PREFIX_U"
     export PATH="$PATH_OVERRIDE"
     export BUILD=x86_64-pc-mingw64
-    export HOST=x86_64-pc-mingw64
+    if [[ "${target_platform}" == "win-arm64" ]]; then
+      export HOST=aarch64-pc-mingw64
+    else
+      export HOST=x86_64-pc-mingw64
+    fi
 
     # Setup needed for autoreconf. Keep am_version sync'ed with meta.yaml.
 
@@ -29,20 +33,29 @@ if [[ "$target_platform" == win* ]] ; then
     export RANLIB=":"
     export STRIP=":"
 
-    # We also need a custom wrapper for `cl -nologo -E` because the
-    # invocation of the "windres"/"rc" tool can't handle preprocessor names
-    # containing spaces. Windres also breaks if we don't use `--use-temp-file`
-    # -- looks like the Cygwin popen() call might not work on Windows.
-
-    export RC="windres --use-temp-file --preprocessor $RECIPE_DIR/msvcpp.sh"
-    export WINDRES="windres --use-temp-file --preprocessor $RECIPE_DIR/msvcpp.sh"
+    if [[ "${target_platform}" == "win-64" ]]; then
+      # We also need a custom wrapper for `cl -nologo -E` because the
+      # invocation of the "windres"/"rc" tool can't handle preprocessor names
+      # containing spaces. Windres also breaks if we don't use `--use-temp-file`
+      # -- looks like the Cygwin popen() call might not work on Windows.
+      export RC="windres --use-temp-file --preprocessor $RECIPE_DIR/msvcpp.sh"
+      export WINDRES="windres --use-temp-file --preprocessor $RECIPE_DIR/msvcpp.sh"
+    else
+      # Available windres does not know about ARM; forward to rc.exe via shim
+      export RC="$RECIPE_DIR/windres-rc.sh"  
+      export WINDRES="$RECIPE_DIR/windres-rc.sh"
+    fi
 
     # We need to get the mingw stub libraries that let us link with system
     # DLLs. Stock gettext gets built on Windows so I'm not sure why it doesn't
     # have any needed Windows OS libraries specified anywhere, but it doesn't,
     # so we add them here too.
 
-    export LDFLAGS="${LDFLAGS:-} -L/mingw-w64/x86_64-w64-mingw32/lib -L$PREFIX/lib"
+    if [[ "${target_platform}" == "win-arm64" ]]; then
+        export LDFLAGS="${LDFLAGS:-} -L$PREFIX/lib"
+    else
+        export LDFLAGS="${LDFLAGS:-} -L/mingw-w64/x86_64-w64-mingw32/lib -L$PREFIX/lib"
+    fi
 
     # We need the -MD flag ("link with MSVCRT.lib"); otherwise our executables
     # can crash with error -1073740791 = 0xC0000409 = STATUS_STACK_BUFFER_OVERRUN
@@ -58,6 +71,8 @@ else
     # Get an updated config.sub and config.guess
    cp $BUILD_PREFIX/share/libtool/build-aux/config.* build-aux/
    export CPP="$CC -E"
+   # GCC 14+ got stricter about this; was only a warning before
+   export CFLAGS="${CFLAGS:-} -Wno-error=incompatible-pointer-types"
 fi
 
 ./configure \
