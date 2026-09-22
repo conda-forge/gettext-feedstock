@@ -15,7 +15,7 @@
 
 package:
   name: gettext-split
-  version: {{ version }}
+  version: "{{ version }}"
 
 source:
   url: https://ftp.gnu.org/pub/gnu/gettext/gettext-{{ version }}.tar.xz
