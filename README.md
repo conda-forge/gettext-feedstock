@@ -3,7 +3,7 @@ About gettext-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gettext-feedstock/blob/main/LICENSE.txt)
 
-
+ 
 About gettext
 -------------
 
