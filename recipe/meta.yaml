@@ -31,6 +31,10 @@ requirements:
     - make
   host:
     - libiconv
+    # With libcurl and json-c, 'spit' (used by msgpre) is built as a C program
+    # instead of being installed as a Python script that needs requests.
+    - libcurl
+    - json-c
 
 
 outputs:
@@ -236,6 +240,9 @@ outputs:
         - make
       host:
         - libiconv
+        # For the C version of 'spit'
+        - libcurl
+        - json-c
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libasprintf', exact=True ) }}
         - {{ pin_subpackage('libgettextpo', exact=True ) }}
@@ -249,6 +256,20 @@ outputs:
       files:
         - an.po
       commands:
+        {% set programs = [
+          "gettext", "ngettext", "printf_gettext", "printf_ngettext", "envsubst",
+          "msgcmp", "msgfmt", "msgmerge", "msgunfmt", "xgettext", "msgattrib",
+          "msgcat", "msgcomm", "msgconv", "msgen", "msgexec", "msgfilter",
+          "msggrep", "msginit", "msgpre", "msguniq", "recode-sr-latin",
+          "autopoint", "gettextize", "po-fetch",
+        ] %}
+        {% for program in programs %}
+        - {{ program }} --version
+        {% endfor %}
+        - test -f ${PREFIX}/bin/gettext.sh
+        # 'spit' must be the C program, not the Python fallback script
+        - spit --version
+        - test "$(head -c 2 ${PREFIX}/bin/spit)" != "#!"
         - msgfmt -o an.gmo an.po
     about:
       home: https://www.gnu.org/software/gettext/
