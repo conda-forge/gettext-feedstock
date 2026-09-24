@@ -18,6 +18,10 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '21'
+json_c:
+- '0.18'
+libcurl:
+- '8'
 libiconv:
 - '1'
 macos_machine:
