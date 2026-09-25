@@ -3,7 +3,7 @@
 set -exuo pipefail
 
 # Get an updated config.sub and config.guess
-cp $BUILD_PREFIX/share/libtool/build-aux/config.* build-aux/
+# cp $BUILD_PREFIX/share/libtool/build-aux/config.* build-aux/
 export CPP="$CC -E"
 
 ./configure \
