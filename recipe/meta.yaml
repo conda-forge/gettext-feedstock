@@ -35,6 +35,8 @@ requirements:
     # instead of being installed as a Python script that needs requests.
     - libcurl
     - json-c
+    # libtextstyle uses terminfo for styled output
+    - ncurses
 
 
 outputs:
@@ -243,6 +245,8 @@ outputs:
         # For the C version of 'spit'
         - libcurl
         - json-c
+        # libtextstyle uses terminfo for styled output
+        - ncurses
         - {{ pin_subpackage('libintl', exact=True) }}  # [not linux]
         - {{ pin_subpackage('libasprintf', exact=True ) }}
         - {{ pin_subpackage('libgettextpo', exact=True ) }}
