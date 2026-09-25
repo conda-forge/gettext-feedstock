@@ -22,6 +22,8 @@ libcurl:
 - '8'
 libiconv:
 - '1'
+ncurses:
+- '6'
 target_platform:
 - linux-aarch64
 zip_keys:
