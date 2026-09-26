@@ -2,8 +2,6 @@
 
 set -exuo pipefail
 
-# export CPP="$CC -E"
-
 ./configure \
   --prefix=$PREFIX \
   --build=$BUILD \
